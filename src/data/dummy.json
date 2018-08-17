@@ -1,0 +1,14 @@
+[
+	{
+		"id": "REACT",
+		"icon": "facebook",
+		"color": "teal",
+		"label": "React"
+	},
+	{
+		"id": "NODE",
+		"icon": "server",
+		"color": "green",
+		"label": "NodeJS"
+	}
+]

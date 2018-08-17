@@ -1,0 +1,26 @@
+@import '../../assets/styles/settings/index';
+
+.blog {
+}
+
+.header {
+	background-color: pink;
+}
+
+.content {
+	background-color: lightblue;
+	font-family: $ff-content;
+	font-weight: $fw-regular;
+}
+
+.title {
+	font-family: $ff-title;
+	font-weight: $fw-bold;
+	text-transform: uppercase;
+}
+
+.date {
+	font-family: $ff-content;
+	font-weight: $fw-light;
+	font-style: italic;
+}

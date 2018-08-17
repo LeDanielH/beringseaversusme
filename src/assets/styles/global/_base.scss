@@ -1,0 +1,38 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style-type: none;
+}
+
+img {
+	display: block;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+button {
+	outline: none;
+	text-transform: uppercase;
+	cursor: pointer;
+	&:focus {
+		outline: none;
+	}
+}
+
+input {
+	&::-ms-clear {
+		display: none;
+	}
+}

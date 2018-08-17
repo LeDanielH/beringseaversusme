@@ -1,0 +1,32 @@
+@import 'variables';
+
+@mixin will-animate($animProperties...) {
+	will-change: #{$animProperties};
+	transition-property: #{$animProperties};
+	@extend %anim-base;
+}
+
+@mixin responsive-title($multiplier: 1) {
+	font-size: $fs-title * $multiplier;
+	@media (max-width: $w-screen) {
+		font-size: $fs-title-vw * $multiplier;
+	}
+}
+
+@mixin responsive-text($multiplier: 1) {
+	font-size: $fs-text * $multiplier;
+	@media (max-width: $mc-desktop-medium) {
+		font-size: $fs-text-vw * $multiplier;
+	}
+}
+
+@mixin disable-default-autocomplete-input($color) {
+	// chrome hack for autocomplete background :D
+	input:-webkit-autofill,
+	input:-webkit-autofill:hover,
+	input:-webkit-autofill:focus,
+	input:-webkit-autofill:active {
+		transition: background-color 0ms ease-in-out 5000s;
+		-webkit-text-fill-color: $color !important;
+	}
+}

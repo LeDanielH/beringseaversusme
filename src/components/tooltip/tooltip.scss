@@ -1,0 +1,48 @@
+@import '../../assets/styles/settings/index';
+
+.tooltip {
+	@include position(fixed, 0 null null 0);
+	z-index: 1000;
+	@include size($tooltip-width, auto);
+	visibility: hidden;
+	opacity: 0;
+	@include will-animate(opacity, visibility);
+	transition-duration: $tr-duration * 0.5;
+	pointer-events: none; // prevent jitter
+
+	&__wrapper {
+		transform: translate3d(0, -100%, 0);
+		width: $tooltip-width;
+		margin-left: (-($tooltip-width/2));
+		&--left {
+			transform: translate3d(0, -13%, 0);
+		}
+	}
+
+	&.active {
+		visibility: visible;
+		opacity: 1;
+	}
+	p {
+		&:first-of-type {
+			margin-bottom: $sp-base * 0.25;
+		}
+	}
+	a {
+		pointer-events: auto; // links clickable
+		color: $c-paid;
+		&:after {
+			background-color: $c-paid;
+		}
+	}
+	.slider.is-entering ~ & {
+		display: none;
+	}
+	@media (max-width: $w-screen - 1) {
+		p {
+			&:first-of-type {
+				margin-bottom: $sp-base-vw * 0.25;
+			}
+		}
+	}
+}
