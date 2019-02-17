@@ -1,33 +1,27 @@
 {
 	"name": "gatsby-starter-default",
-	"description": "beringseaversus.me",
-	"version": "1.0.0",
-	"author": "Daniel Zeman <ledaniel.zeman@gmail.com>",
+	"private": true,
+	"description": "A simple starter to get up and developing quickly with Gatsby",
+	"version": "0.1.0",
+	"author": "Kyle Mathews <mathews.kyle@gmail.com>",
 	"dependencies": {
-		"bourbon": "^5.1.0",
-		"classnames": "^2.2.6",
-		"d3-array": "^1.2.1",
-		"d3-axis": "^1.0.8",
-		"d3-scale": "^2.1.0",
-		"d3-selection": "^1.3.0",
-		"d3-shape": "^1.2.0",
-		"gatsby": "next",
-		"gatsby-plugin-react-helmet": "next",
-		"gatsby-plugin-sass": "next",
-		"gatsby-source-filesystem": "next",
-		"gatsby-transformer-remark": "next",
-		"lodash": "^4.17.10",
-		"moment": "^2.22.2",
-		"normalize-scss": "^7.0.1",
-		"react": "^16.4.1",
-		"react-dom": "^16.4.1",
+		"babel-plugin-styled-components": "^1.10.0",
+		"date-fns": "^1.30.1",
+		"gatsby": "^2.1.4",
+		"gatsby-image": "^2.0.29",
+		"gatsby-plugin-manifest": "^2.0.17",
+		"gatsby-plugin-offline": "^2.0.23",
+		"gatsby-plugin-react-helmet": "^3.0.6",
+		"gatsby-plugin-sharp": "^2.0.20",
+		"gatsby-plugin-styled-components": "^3.0.5",
+		"gatsby-plugin-typescript": "^2.0.8",
+		"gatsby-source-filesystem": "^2.0.20",
+		"gatsby-transformer-remark": "^2.2.5",
+		"gatsby-transformer-sharp": "^2.1.13",
+		"react": "^16.8.2",
+		"react-dom": "^16.8.2",
 		"react-helmet": "^5.2.0",
-		"react-redux": "^5.0.7",
-		"react-transition-group": "^2.4.0",
-		"redux": "^4.0.0",
-		"redux-devtools-extension": "^2.13.5",
-		"redux-thunk": "^2.3.0",
-		"reselect": "^3.0.1"
+		"styled-components": "^4.1.3"
 	},
 	"keywords": [
 		"gatsby"
@@ -35,31 +29,26 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "gatsby build",
-		"develop": "gatsby develop",
-		"format": "prettier --write \"./**/*.{js,json,md,scss}\"",
-		"test": "echo \"Error: no test specified\" && exit 1"
-	},
-	"devDependencies": {
-		"husky": "^1.0.0-rc.13",
-		"lint-staged": "^7.2.0",
-		"node-sass": "^4.9.2",
-		"prettier": "^1.13.7",
-		"webpack": "^4.16.3"
+		"develop": "npm run gatsby-config && gatsby develop",
+		"start": "npm run develop",
+		"serve": "gatsby serve",
+		"test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
+		"type-check": "tsc --noEmit",
+		"format": "prettier --write \"./**/*.{js,ts,tsx,json,md}\"",
+		"gatsby-config": "tsc gatsby-node.ts --skipLibCheck true --noImplicitUseStrict true --target es5"
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/gatsbyjs/gatsby-starter-default"
 	},
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged",
-			"pre-push": "npm test"
-		}
+	"bugs": {
+		"url": "https://github.com/gatsbyjs/gatsby/issues"
 	},
-	"lint-staged": {
-		"*.{js,json,md,scss}": [
-			"npm run format",
-			"git add"
-		]
+	"devDependencies": {
+		"@types/react-helmet": "^5.0.8",
+		"@types/styled-components": "^4.1.10",
+		"prettier": "^1.16.4",
+		"ts-node": "^8.0.2",
+		"typescript": "^3.3.3"
 	}
 }

@@ -1,5 +1,12 @@
-package.json
+# Project dependencies
 package-lock.json
 node_modules/
 public/
 .cache/
+
+# Build directory
+/public
+
+# Other stuff
+.DS_Store
+.env

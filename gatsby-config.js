@@ -5,13 +5,15 @@ module.exports = {
 		description: 'Bering Sea fishing',
 		siteUrl: 'https://beringseaversus.me'
 	},
-	pathPrefix: '/beringseaversusme-new',
+	pathPrefix: '/beringseaversusme',
 	plugins: [
-		'gatsby-plugin-react-helmet',
+		`gatsby-plugin-react-helmet`,
+		`gatsby-plugin-styled-components`,
 		{
-			resolve: `gatsby-plugin-sass`,
+			resolve: `gatsby-source-filesystem`,
 			options: {
-				precision: 3
+				name: `images`,
+				path: `${__dirname}/src/images`
 			}
 		},
 		{
@@ -33,10 +35,33 @@ module.exports = {
 			options: {
 				plugins: [] // just in case those previously mentioned remark plugins sound cool :)
 			}
+		},
+		`gatsby-transformer-sharp`,
+		`gatsby-plugin-sharp`,
+		{
+			resolve: `gatsby-plugin-manifest`,
+			options: {
+				name: `gatsby-starter-default`,
+				short_name: `starter`,
+				start_url: `/`,
+				background_color: `#663399`,
+				theme_color: `#663399`,
+				display: `minimal-ui`,
+				icon: `src/images/gatsby-icon.png` // This path is relative to the root of the site.
+			}
+		},
+		// this (optional) plugin enables Progressive Web App + Offline functionality
+		// To learn more, visit: https://gatsby.app/offline
+		'gatsby-plugin-offline',
+		{
+			resolve: `gatsby-plugin-typescript`,
+			options: {
+				isTSX: false, // defaults to false
+				allExtensions: false // defaults to false
+			}
 		}
 	],
 	mapping: {
-		'MarkdownRemark.frontmatter.author': `AuthorYaml`,
-		'ExperienceJson.items.tech': `TechJson`
+		'MarkdownRemark.frontmatter.author': `AuthorYaml`
 	}
 }
