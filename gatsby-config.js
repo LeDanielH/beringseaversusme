@@ -59,7 +59,16 @@ module.exports = {
 				isTSX: false, // defaults to false
 				allExtensions: false // defaults to false
 			}
-		}
+		},
+		{
+			resolve: `gatsby-plugin-nprogress`,
+			options: {
+				// Setting a color is optional.
+				color: `tomato`,
+				// Disable the loading spinner.
+				showSpinner: false,
+			},
+		},
 	],
 	mapping: {
 		'MarkdownRemark.frontmatter.author': `AuthorYaml`
