@@ -33,9 +33,7 @@ module.exports = {
 		{
 			resolve: 'gatsby-transformer-remark',
 			options: {
-				plugins: [
-					`gatsby-remark-copy-linked-files`,
-				] // just in case those previously mentioned remark plugins sound cool :)
+				plugins: [`gatsby-remark-copy-linked-files`] // just in case those previously mentioned remark plugins sound cool :)
 			}
 		},
 		`gatsby-transformer-sharp`,
@@ -68,9 +66,9 @@ module.exports = {
 				// Setting a color is optional.
 				color: `tomato`,
 				// Disable the loading spinner.
-				showSpinner: false,
-			},
-		},
+				showSpinner: false
+			}
+		}
 	],
 	mapping: {
 		'MarkdownRemark.frontmatter.author': `AuthorYaml`
