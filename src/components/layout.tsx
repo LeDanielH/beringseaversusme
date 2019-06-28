@@ -11,7 +11,7 @@ const Container = styled.div`
 `
 
 import Header from './header'
-import './layout.css'
+import { SiteTitleQueryQuery } from '../types/graphql-types'
 
 interface LayoutProps {
 	children: ReactNode | ReactNodeArray
@@ -30,7 +30,7 @@ const Layout = ({ children }: LayoutProps) => (
 				}
 			}
 		`}
-		render={data => (
+		render={(data: SiteTitleQueryQuery) => (
 			<>
 				<Header siteTitle={data.site.siteMetadata.title} />
 				<Container>

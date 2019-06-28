@@ -1,6 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { DefaultSeoQueryQuery } from '../types/graphql-types'
 
 interface Meta {
 	name: string
@@ -15,21 +16,17 @@ interface SeoProps {
 	meta?: Array<Meta>
 }
 
-interface DefaultSeoQuery {
-	site: {
-		siteMetadata: {
-			title: string
-			description: string
-			author: string
-		}
-	}
-}
-
-function SEO({ description, lang, meta, keywords, title }: SeoProps) {
+function SEO({
+	description,
+	lang = 'en',
+	meta = [],
+	keywords = [],
+	title
+}: SeoProps) {
 	return (
 		<StaticQuery
 			query={detailsQuery}
-			render={(data: DefaultSeoQuery) => {
+			render={(data: DefaultSeoQueryQuery) => {
 				const metaDescription =
 					description || data.site.siteMetadata.description
 				return (
@@ -87,12 +84,6 @@ function SEO({ description, lang, meta, keywords, title }: SeoProps) {
 			}}
 		/>
 	)
-}
-
-SEO.defaultProps = {
-	lang: `en`,
-	meta: [],
-	keywords: []
 }
 
 export default SEO

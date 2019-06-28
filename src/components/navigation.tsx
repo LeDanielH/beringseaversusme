@@ -1,48 +1,70 @@
 import React from 'react'
 import { graphql, Link, StaticQuery } from 'gatsby'
+import { oc } from 'ts-optchain'
 
 import { getDefaultPageData, idToWord } from '../helpers/dir-name-parser'
+import { NavigationQueryQuery } from '../types/graphql-types'
 
-const renderLink = (relativeDir: string, index: number) => {
-	const navLink = getDefaultPageData(relativeDir)
-	return (
-		<Link
-			key={`${relativeDir}-${index}`}
-			to={`/${navLink.slug}`}
-			activeClassName={'active'}
-		>
-			{navLink.title}
-		</Link>
-	)
+const uuidv1 = require('uuid/v1')
+
+const renderLink = (relativeDir?: string | null): React.ReactNode => {
+	if (relativeDir) {
+		const uuid = uuidv1()
+		const navLink = getDefaultPageData(relativeDir)
+		return (
+			<Link
+				key={`${relativeDir}-${uuid}`}
+				to={`/${navLink.slug}`}
+				activeClassName={'active'}
+			>
+				{navLink.title}
+			</Link>
+		)
+	} else {
+		return null
+	}
 }
 
-const renderNav = (data: any) =>
-	data
-		.reduce((accumulator: any, item: any) => {
-			const { category } = item.node.childMarkdownRemark.frontmatter
-			if (accumulator.indexOf(category) === -1)
-				return [...accumulator, category]
-			return accumulator
-		}, [])
-		.map((item: any, index: any) => (
-			<div key={`${item}-${index}`}>
-				<nav>
-					<h4>{idToWord(item)}</h4>
-					<div>
-						{data
-							.filter(
-								(post: any) =>
-									post.node.childMarkdownRemark.frontmatter
-										.category === item
-							)
-							.map((navitem: any, index: number) => {
-								const { relativeDirectory } = navitem.node
-								return renderLink(relativeDirectory, index)
-							})}
+const renderNav = (data: NavigationQueryQuery): React.ReactNode => {
+	const hasEdges = oc(data).allFile.edges().length > 0
+	if (hasEdges) {
+		return data.allFile.edges
+			.reduce((accumulator, item) => {
+				const { category } = item.node.childMarkdownRemark.frontmatter
+				if (accumulator.indexOf(category) === -1)
+					return [...accumulator, category]
+				return accumulator
+			}, [])
+			.map(item => {
+				const uuid = uuidv1()
+				return (
+					<div key={`${item}-${uuid}`}>
+						<nav>
+							<h4>{idToWord(item)}</h4>
+							<div>
+								{data.allFile.edges
+									.filter(
+										post =>
+											oc(
+												post
+											).node.childMarkdownRemark.frontmatter.category() ===
+											item
+									)
+									.map(navItem => {
+										const {
+											relativeDirectory
+										} = navItem.node
+										return renderLink(relativeDirectory)
+									})}
+							</div>
+						</nav>
 					</div>
-				</nav>
-			</div>
-		))
+				)
+			})
+	} else {
+		return null
+	}
+}
 
 export const Navigation = () => (
 	<StaticQuery
@@ -65,6 +87,8 @@ export const Navigation = () => (
 				}
 			}
 		`}
-		render={navData => <nav>{renderNav(navData.allFile.edges)}</nav>}
+		render={(navData: NavigationQueryQuery) => (
+			<nav>{renderNav(navData)}</nav>
+		)}
 	/>
 )
