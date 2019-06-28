@@ -2,6 +2,7 @@ import React from 'react'
 import Layout from '../components/layout'
 import { graphql, Link } from 'gatsby'
 import { getDefaultPageData } from '../helpers/dir-name-parser'
+import { oc } from 'ts-optchain'
 
 type RelativeDirectoruType = string
 
@@ -53,14 +54,12 @@ const Template = ({ data, pageContext }: TemplateProps) => {
 				<article dangerouslySetInnerHTML={{ __html: html }} />
 				<footer>
 					<ul>
-						{previous &&
-							previous.relativeDirectory &&
+						{oc(previous).relativeDirectory() &&
 							renderFooterLink(
 								previous.relativeDirectory,
 								'prev'
 							)}
-						{next &&
-							next.relativeDirectory &&
+						{oc(next).relativeDirectory() &&
 							renderFooterLink(next.relativeDirectory, 'next')}
 					</ul>
 				</footer>
