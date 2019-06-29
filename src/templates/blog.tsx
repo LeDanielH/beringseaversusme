@@ -3,31 +3,22 @@ import Layout from '../components/layout'
 import { graphql, Link } from 'gatsby'
 import { getDefaultPageData } from '../helpers/dir-name-parser'
 import { oc } from 'ts-optchain'
+import RehypeReact from 'rehype-react'
+import { PageQueryQuery, SitePageContext } from '../types/graphql-types'
+import { $PropertyType } from 'utility-types'
 
-type RelativeDirectoruType = string
-
-interface PrevNextInterface {
-	relativeDirectory: RelativeDirectoruType
-}
+const renderAst = new RehypeReact({
+	createElement: React.createElement,
+	components: {}
+}).Compiler
 
 interface TemplateProps {
-	data: {
-		file: {
-			childMarkdownRemark: {
-				html: string
-			}
-		}
-	}
-	pageContext: {
-		previous: PrevNextInterface
-		next: PrevNextInterface
-		date: string
-		title: string
-	}
+	data: PageQueryQuery
+	pageContext: SitePageContext
 }
 
 const renderFooterLink = (
-	relativeDir: RelativeDirectoruType,
+	relativeDir: $PropertyType<SitePageContext, 'relativeDirectory'>,
 	direction: 'prev' | 'next'
 ) => {
 	const toWhere = getDefaultPageData(relativeDir)
@@ -42,7 +33,7 @@ const renderFooterLink = (
 }
 const Template = ({ data, pageContext }: TemplateProps) => {
 	const { file } = data
-	const { html } = file.childMarkdownRemark
+	const { htmlAst } = file.childMarkdownRemark
 	const { previous, next, date, title } = pageContext
 	return (
 		<Layout>
@@ -51,7 +42,7 @@ const Template = ({ data, pageContext }: TemplateProps) => {
 					<h1>{title}</h1>
 					<h3>{date}</h3>
 				</header>
-				<article dangerouslySetInnerHTML={{ __html: html }} />
+				<article>{renderAst(htmlAst)}</article>
 				<footer>
 					<ul>
 						{oc(previous).relativeDirectory() &&
@@ -71,11 +62,11 @@ const Template = ({ data, pageContext }: TemplateProps) => {
 export default Template
 
 export const pageQuery = graphql`
-	query($relativeDirectory: String!) {
+	query PageQuery($relativeDirectory: String!) {
 		file(relativeDirectory: { eq: $relativeDirectory }) {
 			relativeDirectory
 			childMarkdownRemark {
-				html
+				htmlAst
 			}
 		}
 	}

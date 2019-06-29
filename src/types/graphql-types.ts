@@ -2629,17 +2629,17 @@ export type DefaultSeoQueryQuery = { __typename?: 'Query' } & {
 	>
 }
 
-export type Unnamed_2_QueryVariables = {
+export type PageQueryQueryVariables = {
 	relativeDirectory: Scalars['String']
 }
 
-export type Unnamed_2_Query = { __typename?: 'Query' } & {
+export type PageQueryQuery = { __typename?: 'Query' } & {
 	file: Maybe<
 		{ __typename?: 'File' } & Pick<File, 'relativeDirectory'> & {
 				childMarkdownRemark: Maybe<
 					{ __typename?: 'MarkdownRemark' } & Pick<
 						MarkdownRemark,
-						'html'
+						'htmlAst'
 					>
 				>
 			}

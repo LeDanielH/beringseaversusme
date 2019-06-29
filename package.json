@@ -5,7 +5,6 @@
 	"version": "0.0.1",
 	"author": "Daniel Zeman <ledaniel.zeman@gmail.com>",
 	"dependencies": {
-		"babel-plugin-styled-components": "^1.10.1",
 		"date-fns": "^1.30.1",
 		"gatsby": "^2.10.0",
 		"gatsby-image": "^2.2.1",
@@ -16,6 +15,7 @@
 		"gatsby-plugin-sharp": "^2.2.1",
 		"gatsby-plugin-styled-components": "^3.1.0",
 		"gatsby-plugin-typescript": "^2.1.0",
+		"gatsby-remark-component": "^1.1.3",
 		"gatsby-remark-copy-linked-files": "^2.1.0",
 		"gatsby-source-filesystem": "^2.1.0",
 		"gatsby-transformer-remark": "^2.5.0",
@@ -25,6 +25,7 @@
 		"react-helmet": "^5.2.1",
 		"rehype-react": "^3.1.0",
 		"styled-components": "^4.3.2",
+		"utility-types": "^3.7.0",
 		"uuid": "^3.3.2"
 	},
 	"keywords": [
@@ -33,8 +34,7 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "gatsby build",
-		"develop": "npm run gatsby-config && gatsby develop",
-		"start": "npm run develop",
+		"start": "npm run gatsby-config && gatsby develop && generate-graphql-types",
 		"serve": "gatsby serve",
 		"test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
 		"type-check": "tsc --noEmit",
@@ -50,6 +50,7 @@
 		"url": "https://github.com/gatsbyjs/gatsby/issues"
 	},
 	"devDependencies": {
+		"babel-plugin-styled-components": "^1.10.1",
 		"@graphql-codegen/cli": "^1.3.1",
 		"@graphql-codegen/typescript": "1.3.1",
 		"@graphql-codegen/typescript-graphql-files-modules": "^1.3.1",

@@ -68,6 +68,12 @@ module.exports = {
 				// Disable the loading spinner.
 				showSpinner: false
 			}
+		},
+		{
+			resolve: 'gatsby-transformer-remark',
+			options: {
+				plugins: ['gatsby-remark-component']
+			}
 		}
 	],
 	mapping: {
