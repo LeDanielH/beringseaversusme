@@ -4,7 +4,7 @@ import { oc } from 'ts-optchain'
 
 import { getDefaultPageData, idToWord } from '../helpers/dir-name-parser'
 import { NavigationQueryQuery } from '../types/graphql-types'
-import  {NavLinkStyled } from './styled/Nav'
+import { NavLinkStyled } from './styled/Nav'
 
 const uuidv1 = require('uuid/v1')
 
