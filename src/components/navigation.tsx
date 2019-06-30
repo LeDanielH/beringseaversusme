@@ -1,9 +1,10 @@
 import React from 'react'
-import { graphql, Link, StaticQuery } from 'gatsby'
+import { graphql, StaticQuery } from 'gatsby'
 import { oc } from 'ts-optchain'
 
 import { getDefaultPageData, idToWord } from '../helpers/dir-name-parser'
 import { NavigationQueryQuery } from '../types/graphql-types'
+import  {NavLinkStyled } from './styled/Nav'
 
 const uuidv1 = require('uuid/v1')
 
@@ -12,13 +13,13 @@ const renderLink = (relativeDir?: string | null): React.ReactNode => {
 		const uuid = uuidv1()
 		const navLink = getDefaultPageData(relativeDir)
 		return (
-			<Link
+			<NavLinkStyled
 				key={`${relativeDir}-${uuid}`}
 				to={`/${navLink.slug}`}
 				activeClassName={'active'}
 			>
 				{navLink.title}
-			</Link>
+			</NavLinkStyled>
 		)
 	} else {
 		return null
