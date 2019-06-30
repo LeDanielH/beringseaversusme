@@ -5,6 +5,7 @@
 	"version": "0.0.1",
 	"author": "Daniel Zeman <ledaniel.zeman@gmail.com>",
 	"dependencies": {
+		"apollo-boost": "^0.4.3",
 		"date-fns": "^1.30.1",
 		"gatsby": "^2.10.0",
 		"gatsby-image": "^2.2.1",
@@ -18,9 +19,11 @@
 		"gatsby-remark-component": "^1.1.3",
 		"gatsby-remark-copy-linked-files": "^2.1.0",
 		"gatsby-source-filesystem": "^2.1.0",
+		"gatsby-source-graphql": "^2.1.0",
 		"gatsby-transformer-remark": "^2.5.0",
 		"gatsby-transformer-sharp": "^2.2.0",
 		"react": "^16.8.6",
+		"react-apollo": "^2.5.8",
 		"react-dom": "^16.8.6",
 		"react-helmet": "^5.2.1",
 		"rehype-react": "^3.1.0",
@@ -34,12 +37,12 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "gatsby build",
-		"start": "npm run gatsby-config && gatsby develop && generate-graphql-types",
+		"start": "npm run gatsby-config && gatsby develop",
 		"serve": "gatsby serve",
 		"test": "echo \"Write tests! -> https://gatsby.app/unit-testing\"",
 		"type-check": "tsc --noEmit",
 		"format": "prettier --write \"./**/*.{js,ts,tsx,json,md}\"",
-		"gatsby-config": "tsc gatsby-node.ts --skipLibCheck true --noImplicitUseStrict true --target es5",
+		"gatsby-config": "tsc gatsby-node.ts --skipLibCheck true --noImplicitUseStrict true --target es5 --jsx preserve",
 		"generate-graphql-types": "graphql-codegen --config codegen.yml"
 	},
 	"repository": {
@@ -50,14 +53,15 @@
 		"url": "https://github.com/gatsbyjs/gatsby/issues"
 	},
 	"devDependencies": {
-		"babel-plugin-styled-components": "^1.10.1",
 		"@graphql-codegen/cli": "^1.3.1",
 		"@graphql-codegen/typescript": "1.3.1",
 		"@graphql-codegen/typescript-graphql-files-modules": "^1.3.1",
 		"@graphql-codegen/typescript-operations": "1.3.1",
+		"@graphql-codegen/typescript-react-apollo": "^1.3.1",
 		"@types/react-helmet": "^5.0.8",
 		"@types/rehype-react": "^3.1.0",
 		"@types/styled-components": "^4.1.16",
+		"babel-plugin-styled-components": "^1.10.1",
 		"prettier": "^1.18.2",
 		"ts-node": "^8.3.0",
 		"ts-optchain": "^0.1.7",

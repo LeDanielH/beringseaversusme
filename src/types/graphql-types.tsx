@@ -1,4 +1,8 @@
+import gql from 'graphql-tag'
+import * as React from 'react'
+import * as ReactApollo from 'react-apollo'
 export type Maybe<T> = T | null
+export type Omit<T, K extends keyof T> = Pick<T, Exclude<keyof T, K>>
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
 	ID: string
@@ -1358,10 +1362,10 @@ export enum MarkdownRemarkFieldsEnum {
 	internal___owner = 'internal___owner',
 	internal___type = 'internal___type',
 	frontmatter___title = 'frontmatter___title',
+	frontmatter___published = 'frontmatter___published',
 	frontmatter___category = 'frontmatter___category',
 	frontmatter___tags = 'frontmatter___tags',
 	frontmatter___featured = 'frontmatter___featured',
-	frontmatter___published = 'frontmatter___published',
 	excerpt = 'excerpt',
 	rawMarkdownBody = 'rawMarkdownBody',
 	fileAbsolutePath = 'fileAbsolutePath',
@@ -1399,18 +1403,18 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
 	__typename?: 'MarkdownRemarkFrontmatter'
 	title?: Maybe<Scalars['String']>
+	published?: Maybe<Scalars['Boolean']>
 	category?: Maybe<Scalars['String']>
 	tags?: Maybe<Array<Maybe<Scalars['String']>>>
 	featured?: Maybe<Scalars['Boolean']>
-	published?: Maybe<Scalars['Boolean']>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
 	title?: Maybe<StringQueryOperatorInput>
+	published?: Maybe<BooleanQueryOperatorInput>
 	category?: Maybe<StringQueryOperatorInput>
 	tags?: Maybe<StringQueryOperatorInput>
 	featured?: Maybe<BooleanQueryOperatorInput>
-	published?: Maybe<BooleanQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -2115,6 +2119,7 @@ export enum SitePageFieldsEnum {
 	pluginCreator___pluginOptions___allExtensions = 'pluginCreator___pluginOptions___allExtensions',
 	pluginCreator___pluginOptions___color = 'pluginCreator___pluginOptions___color',
 	pluginCreator___pluginOptions___showSpinner = 'pluginCreator___pluginOptions___showSpinner',
+	pluginCreator___pluginOptions___trackingId = 'pluginCreator___pluginOptions___trackingId',
 	pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
 	pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
 	pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
@@ -2322,6 +2327,7 @@ export enum SitePluginFieldsEnum {
 	pluginOptions___allExtensions = 'pluginOptions___allExtensions',
 	pluginOptions___color = 'pluginOptions___color',
 	pluginOptions___showSpinner = 'pluginOptions___showSpinner',
+	pluginOptions___trackingId = 'pluginOptions___trackingId',
 	pluginOptions___pathCheck = 'pluginOptions___pathCheck',
 	nodeAPIs = 'nodeAPIs',
 	browserAPIs = 'browserAPIs',
@@ -2459,6 +2465,7 @@ export type SitePluginPluginOptions = {
 	allExtensions?: Maybe<Scalars['Boolean']>
 	color?: Maybe<Scalars['String']>
 	showSpinner?: Maybe<Scalars['Boolean']>
+	trackingId?: Maybe<Scalars['String']>
 	pathCheck?: Maybe<Scalars['Boolean']>
 }
 
@@ -2476,6 +2483,7 @@ export type SitePluginPluginOptionsFilterInput = {
 	allExtensions?: Maybe<BooleanQueryOperatorInput>
 	color?: Maybe<StringQueryOperatorInput>
 	showSpinner?: Maybe<BooleanQueryOperatorInput>
+	trackingId?: Maybe<StringQueryOperatorInput>
 	pathCheck?: Maybe<BooleanQueryOperatorInput>
 }
 
@@ -2825,3 +2833,427 @@ export type GatsbyImageSharpSizes_WithWebp_NoBase64Fragment = {
 	ImageSharpSizes,
 	'aspectRatio' | 'src' | 'srcSet' | 'srcWebp' | 'srcSetWebp' | 'sizes'
 >
+export const GatsbyImageSharpFixedFragmentDoc = gql`
+	fragment GatsbyImageSharpFixed on ImageSharpFixed {
+		base64
+		width
+		height
+		src
+		srcSet
+	}
+`
+export const GatsbyImageSharpFixed_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpFixed_tracedSVG on ImageSharpFixed {
+		tracedSVG
+		width
+		height
+		src
+		srcSet
+	}
+`
+export const GatsbyImageSharpFixed_withWebpFragmentDoc = gql`
+	fragment GatsbyImageSharpFixed_withWebp on ImageSharpFixed {
+		base64
+		width
+		height
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+	}
+`
+export const GatsbyImageSharpFixed_withWebp_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpFixed_withWebp_tracedSVG on ImageSharpFixed {
+		tracedSVG
+		width
+		height
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+	}
+`
+export const GatsbyImageSharpFixed_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpFixed_noBase64 on ImageSharpFixed {
+		width
+		height
+		src
+		srcSet
+	}
+`
+export const GatsbyImageSharpFixed_withWebp_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpFixed_withWebp_noBase64 on ImageSharpFixed {
+		width
+		height
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+	}
+`
+export const GatsbyImageSharpFluidFragmentDoc = gql`
+	fragment GatsbyImageSharpFluid on ImageSharpFluid {
+		base64
+		aspectRatio
+		src
+		srcSet
+		sizes
+	}
+`
+export const GatsbyImageSharpFluid_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpFluid_tracedSVG on ImageSharpFluid {
+		tracedSVG
+		aspectRatio
+		src
+		srcSet
+		sizes
+	}
+`
+export const GatsbyImageSharpFluid_withWebpFragmentDoc = gql`
+	fragment GatsbyImageSharpFluid_withWebp on ImageSharpFluid {
+		base64
+		aspectRatio
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+		sizes
+	}
+`
+export const GatsbyImageSharpFluid_withWebp_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpFluid_withWebp_tracedSVG on ImageSharpFluid {
+		tracedSVG
+		aspectRatio
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+		sizes
+	}
+`
+export const GatsbyImageSharpFluid_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpFluid_noBase64 on ImageSharpFluid {
+		aspectRatio
+		src
+		srcSet
+		sizes
+	}
+`
+export const GatsbyImageSharpFluid_withWebp_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpFluid_withWebp_noBase64 on ImageSharpFluid {
+		aspectRatio
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+		sizes
+	}
+`
+export const GatsbyImageSharpResolutionsFragmentDoc = gql`
+	fragment GatsbyImageSharpResolutions on ImageSharpResolutions {
+		base64
+		width
+		height
+		src
+		srcSet
+	}
+`
+export const GatsbyImageSharpResolutions_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpResolutions_tracedSVG on ImageSharpResolutions {
+		tracedSVG
+		width
+		height
+		src
+		srcSet
+	}
+`
+export const GatsbyImageSharpResolutions_withWebpFragmentDoc = gql`
+	fragment GatsbyImageSharpResolutions_withWebp on ImageSharpResolutions {
+		base64
+		width
+		height
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+	}
+`
+export const GatsbyImageSharpResolutions_withWebp_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpResolutions_withWebp_tracedSVG on ImageSharpResolutions {
+		tracedSVG
+		width
+		height
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+	}
+`
+export const GatsbyImageSharpResolutions_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpResolutions_noBase64 on ImageSharpResolutions {
+		width
+		height
+		src
+		srcSet
+	}
+`
+export const GatsbyImageSharpResolutions_withWebp_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpResolutions_withWebp_noBase64 on ImageSharpResolutions {
+		width
+		height
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+	}
+`
+export const GatsbyImageSharpSizesFragmentDoc = gql`
+	fragment GatsbyImageSharpSizes on ImageSharpSizes {
+		base64
+		aspectRatio
+		src
+		srcSet
+		sizes
+	}
+`
+export const GatsbyImageSharpSizes_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpSizes_tracedSVG on ImageSharpSizes {
+		tracedSVG
+		aspectRatio
+		src
+		srcSet
+		sizes
+	}
+`
+export const GatsbyImageSharpSizes_withWebpFragmentDoc = gql`
+	fragment GatsbyImageSharpSizes_withWebp on ImageSharpSizes {
+		base64
+		aspectRatio
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+		sizes
+	}
+`
+export const GatsbyImageSharpSizes_withWebp_tracedSVGFragmentDoc = gql`
+	fragment GatsbyImageSharpSizes_withWebp_tracedSVG on ImageSharpSizes {
+		tracedSVG
+		aspectRatio
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+		sizes
+	}
+`
+export const GatsbyImageSharpSizes_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpSizes_noBase64 on ImageSharpSizes {
+		aspectRatio
+		src
+		srcSet
+		sizes
+	}
+`
+export const GatsbyImageSharpSizes_withWebp_noBase64FragmentDoc = gql`
+	fragment GatsbyImageSharpSizes_withWebp_noBase64 on ImageSharpSizes {
+		aspectRatio
+		src
+		srcSet
+		srcWebp
+		srcSetWebp
+		sizes
+	}
+`
+export const SiteTitleQueryDocument = gql`
+	query SiteTitleQuery {
+		site {
+			siteMetadata {
+				title
+			}
+		}
+	}
+`
+export type SiteTitleQueryComponentProps = Omit<
+	ReactApollo.QueryProps<SiteTitleQueryQuery, SiteTitleQueryQueryVariables>,
+	'query'
+>
+
+export const SiteTitleQueryComponent = (
+	props: SiteTitleQueryComponentProps
+) => (
+	<ReactApollo.Query<SiteTitleQueryQuery, SiteTitleQueryQueryVariables>
+		query={SiteTitleQueryDocument}
+		{...props}
+	/>
+)
+
+export type SiteTitleQueryProps<TChildProps = {}> = Partial<
+	ReactApollo.DataProps<SiteTitleQueryQuery, SiteTitleQueryQueryVariables>
+> &
+	TChildProps
+export function withSiteTitleQuery<TProps, TChildProps = {}>(
+	operationOptions?: ReactApollo.OperationOption<
+		TProps,
+		SiteTitleQueryQuery,
+		SiteTitleQueryQueryVariables,
+		SiteTitleQueryProps<TChildProps>
+	>
+) {
+	return ReactApollo.withQuery<
+		TProps,
+		SiteTitleQueryQuery,
+		SiteTitleQueryQueryVariables,
+		SiteTitleQueryProps<TChildProps>
+	>(SiteTitleQueryDocument, {
+		alias: 'withSiteTitleQuery',
+		...operationOptions
+	})
+}
+export const NavigationQueryDocument = gql`
+	query NavigationQuery {
+		allFile(
+			filter: { sourceInstanceName: { eq: "pages" } }
+			sort: { fields: relativeDirectory, order: ASC }
+		) {
+			edges {
+				node {
+					relativeDirectory
+					childMarkdownRemark {
+						frontmatter {
+							category
+						}
+					}
+				}
+			}
+		}
+	}
+`
+export type NavigationQueryComponentProps = Omit<
+	ReactApollo.QueryProps<NavigationQueryQuery, NavigationQueryQueryVariables>,
+	'query'
+>
+
+export const NavigationQueryComponent = (
+	props: NavigationQueryComponentProps
+) => (
+	<ReactApollo.Query<NavigationQueryQuery, NavigationQueryQueryVariables>
+		query={NavigationQueryDocument}
+		{...props}
+	/>
+)
+
+export type NavigationQueryProps<TChildProps = {}> = Partial<
+	ReactApollo.DataProps<NavigationQueryQuery, NavigationQueryQueryVariables>
+> &
+	TChildProps
+export function withNavigationQuery<TProps, TChildProps = {}>(
+	operationOptions?: ReactApollo.OperationOption<
+		TProps,
+		NavigationQueryQuery,
+		NavigationQueryQueryVariables,
+		NavigationQueryProps<TChildProps>
+	>
+) {
+	return ReactApollo.withQuery<
+		TProps,
+		NavigationQueryQuery,
+		NavigationQueryQueryVariables,
+		NavigationQueryProps<TChildProps>
+	>(NavigationQueryDocument, {
+		alias: 'withNavigationQuery',
+		...operationOptions
+	})
+}
+export const DefaultSeoQueryDocument = gql`
+	query DefaultSEOQuery {
+		site {
+			siteMetadata {
+				title
+				description
+				author
+			}
+		}
+	}
+`
+export type DefaultSeoQueryComponentProps = Omit<
+	ReactApollo.QueryProps<DefaultSeoQueryQuery, DefaultSeoQueryQueryVariables>,
+	'query'
+>
+
+export const DefaultSeoQueryComponent = (
+	props: DefaultSeoQueryComponentProps
+) => (
+	<ReactApollo.Query<DefaultSeoQueryQuery, DefaultSeoQueryQueryVariables>
+		query={DefaultSeoQueryDocument}
+		{...props}
+	/>
+)
+
+export type DefaultSeoQueryProps<TChildProps = {}> = Partial<
+	ReactApollo.DataProps<DefaultSeoQueryQuery, DefaultSeoQueryQueryVariables>
+> &
+	TChildProps
+export function withDefaultSeoQuery<TProps, TChildProps = {}>(
+	operationOptions?: ReactApollo.OperationOption<
+		TProps,
+		DefaultSeoQueryQuery,
+		DefaultSeoQueryQueryVariables,
+		DefaultSeoQueryProps<TChildProps>
+	>
+) {
+	return ReactApollo.withQuery<
+		TProps,
+		DefaultSeoQueryQuery,
+		DefaultSeoQueryQueryVariables,
+		DefaultSeoQueryProps<TChildProps>
+	>(DefaultSeoQueryDocument, {
+		alias: 'withDefaultSeoQuery',
+		...operationOptions
+	})
+}
+export const PageQueryDocument = gql`
+	query PageQuery($relativeDirectory: String!) {
+		file(relativeDirectory: { eq: $relativeDirectory }) {
+			relativeDirectory
+			childMarkdownRemark {
+				htmlAst
+			}
+		}
+	}
+`
+export type PageQueryComponentProps = Omit<
+	ReactApollo.QueryProps<PageQueryQuery, PageQueryQueryVariables>,
+	'query'
+> &
+	({ variables: PageQueryQueryVariables; skip?: false } | { skip: true })
+
+export const PageQueryComponent = (props: PageQueryComponentProps) => (
+	<ReactApollo.Query<PageQueryQuery, PageQueryQueryVariables>
+		query={PageQueryDocument}
+		{...props}
+	/>
+)
+
+export type PageQueryProps<TChildProps = {}> = Partial<
+	ReactApollo.DataProps<PageQueryQuery, PageQueryQueryVariables>
+> &
+	TChildProps
+export function withPageQuery<TProps, TChildProps = {}>(
+	operationOptions?: ReactApollo.OperationOption<
+		TProps,
+		PageQueryQuery,
+		PageQueryQueryVariables,
+		PageQueryProps<TChildProps>
+	>
+) {
+	return ReactApollo.withQuery<
+		TProps,
+		PageQueryQuery,
+		PageQueryQueryVariables,
+		PageQueryProps<TChildProps>
+	>(PageQueryDocument, {
+		alias: 'withPageQuery',
+		...operationOptions
+	})
+}
