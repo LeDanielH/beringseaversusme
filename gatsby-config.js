@@ -81,6 +81,14 @@ module.exports = {
 				// replace "UA-XXXXXXXXX-X" with your own Tracking ID
 				trackingId: 'UA-53689917-1'
 			}
+		},
+		{
+			resolve: 'gatsby-source-graphql',
+			options: {
+				typeName: 'RMAPI',
+				fieldName: 'rickAndMorty',
+				url: 'https://rickandmortyapi-gql.now.sh/'
+			}
 		}
 	],
 	mapping: {

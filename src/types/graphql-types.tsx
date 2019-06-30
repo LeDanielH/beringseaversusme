@@ -16,6 +16,10 @@ export type Scalars = {
 	Date: any
 	/** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
 	JSON: any
+	/** The `Upload` scalar type represents a file upload promise that resolves an
+	 * object containing `stream`, `filename`, `mimetype` and `encoding`.
+	 */
+	RMAPI_Upload: any
 }
 
 export type BooleanQueryOperatorInput = {
@@ -653,6 +657,158 @@ export type FloatQueryOperatorInput = {
 	lte?: Maybe<Scalars['Float']>
 	in?: Maybe<Array<Maybe<Scalars['Float']>>>
 	nin?: Maybe<Array<Maybe<Scalars['Float']>>>
+}
+
+export type GraphQlSource = Node & {
+	__typename?: 'GraphQLSource'
+	id: Scalars['ID']
+	parent?: Maybe<Node>
+	children: Array<Node>
+	internal: Internal
+	typeName?: Maybe<Scalars['String']>
+	fieldName?: Maybe<Scalars['String']>
+}
+
+export type GraphQlSourceConnection = {
+	__typename?: 'GraphQLSourceConnection'
+	totalCount: Scalars['Int']
+	edges: Array<GraphQlSourceEdge>
+	nodes: Array<GraphQlSource>
+	pageInfo: PageInfo
+	distinct: Array<Scalars['String']>
+	group: Array<GraphQlSourceGroupConnection>
+}
+
+export type GraphQlSourceConnectionDistinctArgs = {
+	field: GraphQlSourceFieldsEnum
+}
+
+export type GraphQlSourceConnectionGroupArgs = {
+	skip?: Maybe<Scalars['Int']>
+	limit?: Maybe<Scalars['Int']>
+	field: GraphQlSourceFieldsEnum
+}
+
+export type GraphQlSourceEdge = {
+	__typename?: 'GraphQLSourceEdge'
+	next?: Maybe<GraphQlSource>
+	node: GraphQlSource
+	previous?: Maybe<GraphQlSource>
+}
+
+export enum GraphQlSourceFieldsEnum {
+	id = 'id',
+	parent___id = 'parent___id',
+	parent___parent___id = 'parent___parent___id',
+	parent___parent___parent___id = 'parent___parent___parent___id',
+	parent___parent___parent___children = 'parent___parent___parent___children',
+	parent___parent___children = 'parent___parent___children',
+	parent___parent___children___id = 'parent___parent___children___id',
+	parent___parent___children___children = 'parent___parent___children___children',
+	parent___parent___internal___content = 'parent___parent___internal___content',
+	parent___parent___internal___contentDigest = 'parent___parent___internal___contentDigest',
+	parent___parent___internal___description = 'parent___parent___internal___description',
+	parent___parent___internal___fieldOwners = 'parent___parent___internal___fieldOwners',
+	parent___parent___internal___ignoreType = 'parent___parent___internal___ignoreType',
+	parent___parent___internal___mediaType = 'parent___parent___internal___mediaType',
+	parent___parent___internal___owner = 'parent___parent___internal___owner',
+	parent___parent___internal___type = 'parent___parent___internal___type',
+	parent___children = 'parent___children',
+	parent___children___id = 'parent___children___id',
+	parent___children___parent___id = 'parent___children___parent___id',
+	parent___children___parent___children = 'parent___children___parent___children',
+	parent___children___children = 'parent___children___children',
+	parent___children___children___id = 'parent___children___children___id',
+	parent___children___children___children = 'parent___children___children___children',
+	parent___children___internal___content = 'parent___children___internal___content',
+	parent___children___internal___contentDigest = 'parent___children___internal___contentDigest',
+	parent___children___internal___description = 'parent___children___internal___description',
+	parent___children___internal___fieldOwners = 'parent___children___internal___fieldOwners',
+	parent___children___internal___ignoreType = 'parent___children___internal___ignoreType',
+	parent___children___internal___mediaType = 'parent___children___internal___mediaType',
+	parent___children___internal___owner = 'parent___children___internal___owner',
+	parent___children___internal___type = 'parent___children___internal___type',
+	parent___internal___content = 'parent___internal___content',
+	parent___internal___contentDigest = 'parent___internal___contentDigest',
+	parent___internal___description = 'parent___internal___description',
+	parent___internal___fieldOwners = 'parent___internal___fieldOwners',
+	parent___internal___ignoreType = 'parent___internal___ignoreType',
+	parent___internal___mediaType = 'parent___internal___mediaType',
+	parent___internal___owner = 'parent___internal___owner',
+	parent___internal___type = 'parent___internal___type',
+	children = 'children',
+	children___id = 'children___id',
+	children___parent___id = 'children___parent___id',
+	children___parent___parent___id = 'children___parent___parent___id',
+	children___parent___parent___children = 'children___parent___parent___children',
+	children___parent___children = 'children___parent___children',
+	children___parent___children___id = 'children___parent___children___id',
+	children___parent___children___children = 'children___parent___children___children',
+	children___parent___internal___content = 'children___parent___internal___content',
+	children___parent___internal___contentDigest = 'children___parent___internal___contentDigest',
+	children___parent___internal___description = 'children___parent___internal___description',
+	children___parent___internal___fieldOwners = 'children___parent___internal___fieldOwners',
+	children___parent___internal___ignoreType = 'children___parent___internal___ignoreType',
+	children___parent___internal___mediaType = 'children___parent___internal___mediaType',
+	children___parent___internal___owner = 'children___parent___internal___owner',
+	children___parent___internal___type = 'children___parent___internal___type',
+	children___children = 'children___children',
+	children___children___id = 'children___children___id',
+	children___children___parent___id = 'children___children___parent___id',
+	children___children___parent___children = 'children___children___parent___children',
+	children___children___children = 'children___children___children',
+	children___children___children___id = 'children___children___children___id',
+	children___children___children___children = 'children___children___children___children',
+	children___children___internal___content = 'children___children___internal___content',
+	children___children___internal___contentDigest = 'children___children___internal___contentDigest',
+	children___children___internal___description = 'children___children___internal___description',
+	children___children___internal___fieldOwners = 'children___children___internal___fieldOwners',
+	children___children___internal___ignoreType = 'children___children___internal___ignoreType',
+	children___children___internal___mediaType = 'children___children___internal___mediaType',
+	children___children___internal___owner = 'children___children___internal___owner',
+	children___children___internal___type = 'children___children___internal___type',
+	children___internal___content = 'children___internal___content',
+	children___internal___contentDigest = 'children___internal___contentDigest',
+	children___internal___description = 'children___internal___description',
+	children___internal___fieldOwners = 'children___internal___fieldOwners',
+	children___internal___ignoreType = 'children___internal___ignoreType',
+	children___internal___mediaType = 'children___internal___mediaType',
+	children___internal___owner = 'children___internal___owner',
+	children___internal___type = 'children___internal___type',
+	internal___content = 'internal___content',
+	internal___contentDigest = 'internal___contentDigest',
+	internal___description = 'internal___description',
+	internal___fieldOwners = 'internal___fieldOwners',
+	internal___ignoreType = 'internal___ignoreType',
+	internal___mediaType = 'internal___mediaType',
+	internal___owner = 'internal___owner',
+	internal___type = 'internal___type',
+	typeName = 'typeName',
+	fieldName = 'fieldName'
+}
+
+export type GraphQlSourceFilterInput = {
+	id?: Maybe<StringQueryOperatorInput>
+	parent?: Maybe<NodeFilterInput>
+	children?: Maybe<NodeFilterListInput>
+	internal?: Maybe<InternalFilterInput>
+	typeName?: Maybe<StringQueryOperatorInput>
+	fieldName?: Maybe<StringQueryOperatorInput>
+}
+
+export type GraphQlSourceGroupConnection = {
+	__typename?: 'GraphQLSourceGroupConnection'
+	totalCount: Scalars['Int']
+	edges: Array<GraphQlSourceEdge>
+	nodes: Array<GraphQlSource>
+	pageInfo: PageInfo
+	field: Scalars['String']
+	fieldValue?: Maybe<Scalars['String']>
+}
+
+export type GraphQlSourceSortInput = {
+	fields?: Maybe<Array<Maybe<GraphQlSourceFieldsEnum>>>
+	order?: Maybe<Array<Maybe<SortOrderEnum>>>
 }
 
 export enum HeadingLevels {
@@ -1362,10 +1518,10 @@ export enum MarkdownRemarkFieldsEnum {
 	internal___owner = 'internal___owner',
 	internal___type = 'internal___type',
 	frontmatter___title = 'frontmatter___title',
-	frontmatter___published = 'frontmatter___published',
 	frontmatter___category = 'frontmatter___category',
-	frontmatter___tags = 'frontmatter___tags',
 	frontmatter___featured = 'frontmatter___featured',
+	frontmatter___tags = 'frontmatter___tags',
+	frontmatter___published = 'frontmatter___published',
 	excerpt = 'excerpt',
 	rawMarkdownBody = 'rawMarkdownBody',
 	fileAbsolutePath = 'fileAbsolutePath',
@@ -1403,18 +1559,18 @@ export type MarkdownRemarkFilterInput = {
 export type MarkdownRemarkFrontmatter = {
 	__typename?: 'MarkdownRemarkFrontmatter'
 	title?: Maybe<Scalars['String']>
-	published?: Maybe<Scalars['Boolean']>
 	category?: Maybe<Scalars['String']>
-	tags?: Maybe<Array<Maybe<Scalars['String']>>>
 	featured?: Maybe<Scalars['Boolean']>
+	tags?: Maybe<Array<Maybe<Scalars['String']>>>
+	published?: Maybe<Scalars['Boolean']>
 }
 
 export type MarkdownRemarkFrontmatterFilterInput = {
 	title?: Maybe<StringQueryOperatorInput>
-	published?: Maybe<BooleanQueryOperatorInput>
 	category?: Maybe<StringQueryOperatorInput>
-	tags?: Maybe<StringQueryOperatorInput>
 	featured?: Maybe<BooleanQueryOperatorInput>
+	tags?: Maybe<StringQueryOperatorInput>
+	published?: Maybe<BooleanQueryOperatorInput>
 }
 
 export type MarkdownRemarkGroupConnection = {
@@ -1498,6 +1654,9 @@ export type Query = {
 	allImageSharp?: Maybe<ImageSharpConnection>
 	markdownRemark?: Maybe<MarkdownRemark>
 	allMarkdownRemark?: Maybe<MarkdownRemarkConnection>
+	graphQlSource?: Maybe<GraphQlSource>
+	allGraphQlSource?: Maybe<GraphQlSourceConnection>
+	rickAndMorty?: Maybe<Rmapi>
 }
 
 export type QueryFileArgs = {
@@ -1701,6 +1860,139 @@ export type QueryAllMarkdownRemarkArgs = {
 	sort?: Maybe<MarkdownRemarkSortInput>
 	skip?: Maybe<Scalars['Int']>
 	limit?: Maybe<Scalars['Int']>
+}
+
+export type QueryGraphQlSourceArgs = {
+	id?: Maybe<StringQueryOperatorInput>
+	parent?: Maybe<NodeFilterInput>
+	children?: Maybe<NodeFilterListInput>
+	internal?: Maybe<InternalFilterInput>
+	typeName?: Maybe<StringQueryOperatorInput>
+	fieldName?: Maybe<StringQueryOperatorInput>
+}
+
+export type QueryAllGraphQlSourceArgs = {
+	filter?: Maybe<GraphQlSourceFilterInput>
+	sort?: Maybe<GraphQlSourceSortInput>
+	skip?: Maybe<Scalars['Int']>
+	limit?: Maybe<Scalars['Int']>
+}
+
+export type Rmapi = {
+	__typename?: 'RMAPI'
+	character?: Maybe<Rmapi_Character>
+	characters?: Maybe<Rmapi_Characters>
+	multipleCharacters?: Maybe<Array<Maybe<Rmapi_Character>>>
+	episode?: Maybe<Rmapi_Episode>
+	episodes?: Maybe<Rmapi_Episodes>
+	multipleEpisodes?: Maybe<Array<Maybe<Rmapi_Episode>>>
+	location?: Maybe<Rmapi_Location>
+	locations?: Maybe<Rmapi_Locations>
+	multipleLocations?: Maybe<Array<Maybe<Rmapi_Location>>>
+}
+
+export type RmapiCharacterArgs = {
+	id: Scalars['Int']
+}
+
+export type RmapiCharactersArgs = {
+	page?: Maybe<Scalars['Int']>
+	name?: Maybe<Scalars['String']>
+	status?: Maybe<Scalars['String']>
+	species?: Maybe<Scalars['String']>
+	type?: Maybe<Scalars['String']>
+	gender?: Maybe<Scalars['String']>
+}
+
+export type RmapiMultipleCharactersArgs = {
+	ids: Array<Maybe<Scalars['Int']>>
+}
+
+export type RmapiEpisodeArgs = {
+	id: Scalars['Int']
+}
+
+export type RmapiEpisodesArgs = {
+	page?: Maybe<Scalars['Int']>
+	name?: Maybe<Scalars['String']>
+	episode?: Maybe<Scalars['String']>
+}
+
+export type RmapiMultipleEpisodesArgs = {
+	ids: Array<Maybe<Scalars['Int']>>
+}
+
+export type RmapiLocationArgs = {
+	id: Scalars['Int']
+}
+
+export type RmapiLocationsArgs = {
+	page?: Maybe<Scalars['Int']>
+	name?: Maybe<Scalars['String']>
+	type?: Maybe<Scalars['String']>
+	dimension?: Maybe<Scalars['String']>
+}
+
+export type RmapiMultipleLocationsArgs = {
+	ids: Array<Maybe<Scalars['Int']>>
+}
+
+export type Rmapi_Character = {
+	__typename?: 'RMAPI_Character'
+	id?: Maybe<Scalars['Int']>
+	name?: Maybe<Scalars['String']>
+	species?: Maybe<Scalars['String']>
+	type?: Maybe<Scalars['String']>
+	status?: Maybe<Scalars['String']>
+	location?: Maybe<Rmapi_Location>
+	origin?: Maybe<Rmapi_Location>
+	gender?: Maybe<Scalars['String']>
+	episodes?: Maybe<Array<Maybe<Rmapi_Episode>>>
+	image?: Maybe<Scalars['String']>
+}
+
+export type Rmapi_Characters = {
+	__typename?: 'RMAPI_Characters'
+	info?: Maybe<Rmapi_Information>
+	results?: Maybe<Array<Maybe<Rmapi_Character>>>
+}
+
+export type Rmapi_Episode = {
+	__typename?: 'RMAPI_Episode'
+	id?: Maybe<Scalars['Int']>
+	name?: Maybe<Scalars['String']>
+	episode?: Maybe<Scalars['String']>
+	air_date?: Maybe<Scalars['String']>
+	characters?: Maybe<Array<Maybe<Rmapi_Character>>>
+}
+
+export type Rmapi_Episodes = {
+	__typename?: 'RMAPI_Episodes'
+	info?: Maybe<Rmapi_Information>
+	results?: Maybe<Array<Maybe<Rmapi_Episode>>>
+}
+
+export type Rmapi_Information = {
+	__typename?: 'RMAPI_Information'
+	count?: Maybe<Scalars['Int']>
+	pages?: Maybe<Scalars['Int']>
+	next?: Maybe<Scalars['Int']>
+	prev?: Maybe<Scalars['Int']>
+}
+
+export type Rmapi_Location = {
+	__typename?: 'RMAPI_Location'
+	id?: Maybe<Scalars['Int']>
+	name?: Maybe<Scalars['String']>
+	type?: Maybe<Scalars['String']>
+	dimension?: Maybe<Scalars['String']>
+	residents?: Maybe<Array<Maybe<Rmapi_Character>>>
+}
+
+export type Rmapi_Locations = {
+	__typename?: 'RMAPI_Locations'
+	info?: Maybe<Rmapi_Information>
+	results?: Maybe<Array<Maybe<Rmapi_Location>>>
 }
 
 export type Site = Node & {
@@ -2120,6 +2412,9 @@ export enum SitePageFieldsEnum {
 	pluginCreator___pluginOptions___color = 'pluginCreator___pluginOptions___color',
 	pluginCreator___pluginOptions___showSpinner = 'pluginCreator___pluginOptions___showSpinner',
 	pluginCreator___pluginOptions___trackingId = 'pluginCreator___pluginOptions___trackingId',
+	pluginCreator___pluginOptions___typeName = 'pluginCreator___pluginOptions___typeName',
+	pluginCreator___pluginOptions___fieldName = 'pluginCreator___pluginOptions___fieldName',
+	pluginCreator___pluginOptions___url = 'pluginCreator___pluginOptions___url',
 	pluginCreator___pluginOptions___pathCheck = 'pluginCreator___pluginOptions___pathCheck',
 	pluginCreator___nodeAPIs = 'pluginCreator___nodeAPIs',
 	pluginCreator___browserAPIs = 'pluginCreator___browserAPIs',
@@ -2328,6 +2623,9 @@ export enum SitePluginFieldsEnum {
 	pluginOptions___color = 'pluginOptions___color',
 	pluginOptions___showSpinner = 'pluginOptions___showSpinner',
 	pluginOptions___trackingId = 'pluginOptions___trackingId',
+	pluginOptions___typeName = 'pluginOptions___typeName',
+	pluginOptions___fieldName = 'pluginOptions___fieldName',
+	pluginOptions___url = 'pluginOptions___url',
 	pluginOptions___pathCheck = 'pluginOptions___pathCheck',
 	nodeAPIs = 'nodeAPIs',
 	browserAPIs = 'browserAPIs',
@@ -2466,6 +2764,9 @@ export type SitePluginPluginOptions = {
 	color?: Maybe<Scalars['String']>
 	showSpinner?: Maybe<Scalars['Boolean']>
 	trackingId?: Maybe<Scalars['String']>
+	typeName?: Maybe<Scalars['String']>
+	fieldName?: Maybe<Scalars['String']>
+	url?: Maybe<Scalars['String']>
 	pathCheck?: Maybe<Scalars['Boolean']>
 }
 
@@ -2484,6 +2785,9 @@ export type SitePluginPluginOptionsFilterInput = {
 	color?: Maybe<StringQueryOperatorInput>
 	showSpinner?: Maybe<BooleanQueryOperatorInput>
 	trackingId?: Maybe<StringQueryOperatorInput>
+	typeName?: Maybe<StringQueryOperatorInput>
+	fieldName?: Maybe<StringQueryOperatorInput>
+	url?: Maybe<StringQueryOperatorInput>
 	pathCheck?: Maybe<BooleanQueryOperatorInput>
 }
 
