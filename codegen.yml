@@ -5,10 +5,11 @@ documents:
   - "node_modules/gatsby-*/**/*.js"
   - "gatsby-node.ts"
 generates:
-  src/types/graphql-types.ts:
+  src/types/graphql-types.tsx:
     plugins:
       - typescript
       - typescript-operations
+      - typescript-react-apollo
 config:
   namingConvention:
     enumValues: keep
