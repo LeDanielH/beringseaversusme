@@ -1,9 +1,13 @@
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV}`
+})
+
 module.exports = {
 	siteMetadata: {
 		title: 'beringseaversus.me',
 		author: 'Daniel Zeman',
 		description: 'Bering Sea fishing',
-		siteUrl: 'https://beringseaversus.me'
+		siteUrl: process.env.GATSBY_PAGE_URL
 	},
 	pathPrefix: '/beringseaversusme',
 	plugins: [
@@ -78,8 +82,7 @@ module.exports = {
 		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
-				// replace "UA-XXXXXXXXX-X" with your own Tracking ID
-				trackingId: 'UA-53689917-1'
+				trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID
 			}
 		},
 		{
@@ -87,7 +90,7 @@ module.exports = {
 			options: {
 				typeName: 'RMAPI',
 				fieldName: 'rickAndMorty',
-				url: 'https://rickandmortyapi-gql.now.sh/'
+				url: process.env.GATSBY_API_URL
 			}
 		}
 	],

@@ -6,6 +6,7 @@ import { Properties } from '../types/css'
 
 interface HeaderProps {
 	siteTitle: string
+	children?: never
 }
 
 const headerStyles: Properties = {

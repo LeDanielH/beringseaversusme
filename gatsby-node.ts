@@ -16,6 +16,10 @@ import { oc } from 'ts-optchain'
 
 // You can delete this file if you're not using it
 
+require('dotenv').config({
+	path: `.env.${process.env.NODE_ENV}`
+})
+
 const path = require('path')
 const format = require('date-fns/format')
 import { getDefaultPageData } from './src/helpers/dir-name-parser'
