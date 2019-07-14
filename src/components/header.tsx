@@ -2,26 +2,26 @@ import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
-import { Properties } from '../types/css'
+import { CSSObject } from 'styled-components'
 
 interface HeaderProps {
 	siteTitle: string
 	children?: never
 }
 
-const headerStyles: Properties = {
+const headerStyles: CSSObject = {
 	backgroundColor: 'rebeccapurple',
 	marginBottom: '1.45rem',
 	display: 'flex'
 }
 
-const headerInnerStyles: Properties = {
+const headerInnerStyles: CSSObject = {
 	margin: `0 auto`,
 	maxWidth: '960px',
 	padding: `1.45rem 1.0875rem`
 }
 
-const linkStyles: Properties = {
+const linkStyles: CSSObject = {
 	color: `white`,
 	textDecoration: `none`
 }

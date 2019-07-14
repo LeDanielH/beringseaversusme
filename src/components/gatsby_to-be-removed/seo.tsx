@@ -1,7 +1,7 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { DefaultSeoQueryQuery } from '../types/graphql-types'
+import { DefaultSeoQueryQuery } from '../../types/graphql-types'
 
 interface Meta {
 	name: string

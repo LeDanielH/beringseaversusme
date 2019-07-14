@@ -1,7 +1,7 @@
 import React from 'react'
 
-import Layout from '../components/layout'
-import SEO from '../components/seo'
+import Layout from '../components/gatsby_to-be-removed/layout'
+import SEO from '../components/gatsby_to-be-removed/seo'
 
 const NotFoundPage = () => (
 	<Layout>

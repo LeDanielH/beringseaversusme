@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'gatsby'
 
-import Layout from '../components/layout'
-import Image from '../components/image'
-import SEO from '../components/seo'
+import Layout from '../components/gatsby_to-be-removed/layout'
+import Image from '../components/gatsby_to-be-removed/image'
+import SEO from '../components/gatsby_to-be-removed/seo'
 
 const IndexPage = () => (
 	<Layout>

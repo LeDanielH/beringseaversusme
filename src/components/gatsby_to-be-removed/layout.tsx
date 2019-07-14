@@ -1,8 +1,8 @@
 import React, { ReactNode, ReactNodeArray } from 'react'
 import { StaticQuery, graphql } from 'gatsby'
-import { Navigation } from './navigation'
+import { Navigation } from '../navigation/navigation'
 import styled, { ThemeProvider } from 'styled-components'
-import { theme } from '../styles/theme'
+import { theme } from '../../styles/theme'
 
 const Container = styled.div`
 	margin: 0 auto;
@@ -10,8 +10,8 @@ const Container = styled.div`
 	padding: 0 1.0875rem 1.45rem;
 `
 
-import Header from './header'
-import { SiteTitleQueryQuery } from '../types/graphql-types'
+import Header from '../header'
+import { SiteTitleQueryQuery } from '../../types/graphql-types'
 
 interface LayoutProps {
 	children: ReactNode | ReactNodeArray

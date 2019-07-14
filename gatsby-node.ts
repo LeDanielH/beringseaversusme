@@ -22,7 +22,7 @@ require('dotenv').config({
 
 const path = require('path')
 const format = require('date-fns/format')
-import { getDefaultPageData } from './src/helpers/dir-name-parser'
+import { getDefaultPageData } from './src/utilities/dir-name-parser'
 import { GatsbyCreatePages } from './src/types/gatsby-config'
 import { Query } from './src/types/graphql-types'
 

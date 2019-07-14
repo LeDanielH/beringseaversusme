@@ -2,9 +2,9 @@ import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { oc } from 'ts-optchain'
 
-import { getDefaultPageData, idToWord } from '../helpers/dir-name-parser'
-import { NavigationQueryQuery } from '../types/graphql-types'
-import { NavLinkStyled } from './styled/Nav'
+import { getDefaultPageData, idToWord } from '../../utilities/dir-name-parser'
+import { NavigationQueryQuery } from '../../types/graphql-types'
+import { NavLinkStyled } from './nav-link'
 
 const uuidv1 = require('uuid/v1')
 
