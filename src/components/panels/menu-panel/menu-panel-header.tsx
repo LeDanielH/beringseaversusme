@@ -4,7 +4,7 @@ import {
 	MenuPanelHeaderStyled
 } from './menu-panel.styles'
 import { FlexChild } from '../../layout-flex'
-import { FlipperY } from '../../flippers'
+import { FlipperY } from '../../flipper'
 import { IconChevron } from '../../icons/icon-chevron'
 import { IMenuPanelHeaderProps } from './menu-panel.types'
 import { theme } from '../../../styles/theme'
