@@ -26,7 +26,7 @@ interface IRadialProgressProps {
 export class RadialProgress extends React.Component<
 	IRadialProgressProps
 > {
-	public render() {
+	render() {
 		let { progress = 0.5 } = this.props
 		const {
 			children,
