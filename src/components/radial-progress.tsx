@@ -23,9 +23,7 @@ interface IRadialProgressProps {
 	progressColor?: string
 	staticColor?: string
 }
-export class RadialProgress extends React.Component<
-	IRadialProgressProps
-> {
+export class RadialProgress extends React.Component<IRadialProgressProps> {
 	render() {
 		let { progress = 0.5 } = this.props
 		const {
