@@ -36,6 +36,9 @@ export const SvgIconWrapper = styled('i')<
 			size ? sizeRounderWithUnit(size, 'px') : theme.sizes.iconSize};
         flex: 0 0 ${({ size }) =>
 			size ? sizeRounderWithUnit(size, 'px') : theme.sizes.iconSize};
+        path, circle, rect {
+          ${css(withTransition('stroke'))}
+        }
     }
 `
 
