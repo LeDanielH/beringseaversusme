@@ -27,6 +27,7 @@ export interface ILayoutFlexChildProps {
 	spacing?: SpacingSizes
 	withBottomSpacing?: boolean
 	noFontSize?: boolean
+	justifySelfEnd?: boolean
 }
 
 export const FlexParent = styled.div<ILayoutFlexParentProps>`
@@ -53,4 +54,5 @@ export const FlexChild = styled.div<ILayoutFlexChildProps>`
 	${({ withBottomSpacing, spacing = 'default' }) =>
 		withBottomSpacing && `margin-bottom: ${theme.spacing[spacing]};`}
 	${({ noFontSize }) => noFontSize && 'font-size: 0;'}
+	${({ justifySelfEnd }) => justifySelfEnd && 'margin-left: auto;'}
 `
