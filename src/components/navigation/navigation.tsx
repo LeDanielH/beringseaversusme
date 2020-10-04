@@ -1,24 +1,26 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { oc } from 'ts-optchain'
+import { FormattedMessage } from 'gatsby-plugin-intl'
 
 import { getDefaultPageData, idToWord } from '../../utilities/dir-name-parser'
-import { NavigationQueryQuery } from '../../types/graphql-types'
 import { NavLinkStyled } from './nav-link'
+import { MdxEdge, Query } from '../../../gatsby-generated-types'
 
-const uuidv1 = require('uuid/v1')
+const renderLink = (
+	directoryName: string | null | undefined,
+	id: string
+): React.ReactNode => {
+	if (directoryName) {
+		const { slug, title, titleIntl } = getDefaultPageData(directoryName)
 
-const renderLink = (relativeDir?: string | null): React.ReactNode => {
-	if (relativeDir) {
-		const uuid = uuidv1()
-		const navLink = getDefaultPageData(relativeDir)
 		return (
 			<NavLinkStyled
-				key={`${relativeDir}-${uuid}`}
-				to={`/${navLink.slug}`}
+				key={`${slug}-${id}`}
+				to={slug}
 				activeClassName={'active'}
 			>
-				{navLink.title}
+				<FormattedMessage id={titleIntl} defaultMessage={title} />
 			</NavLinkStyled>
 		)
 	} else {
@@ -26,42 +28,57 @@ const renderLink = (relativeDir?: string | null): React.ReactNode => {
 	}
 }
 
-const renderNav = (data: NavigationQueryQuery): React.ReactNode => {
-	const hasEdges = oc(data).allFile.edges().length > 0
-	if (hasEdges) {
-		return data.allFile.edges
-			.reduce((accumulator, item) => {
-				const { category } = item.node.childMarkdownRemark.frontmatter
-				if (accumulator.indexOf(category) === -1)
-					return [...accumulator, category]
+const renderNav = (data: Query): React.ReactNode => {
+	const hasEdges = data.allMdx.edges.length > 0
+
+	const getPostsCategories = (edges: Array<MdxEdge>): string[] => {
+		if (edges.length > 0) {
+			return edges.reduce((accumulator: string[], item: MdxEdge) => {
+				const category = oc(item).node.frontmatter.category()
+				if (category) {
+					const missingCategory = accumulator.indexOf(category) === -1
+					if (missingCategory) {
+						return [...accumulator, category]
+					}
+				}
 				return accumulator
 			}, [])
-			.map(item => {
-				const uuid = uuidv1()
-				return (
-					<div key={`${item}-${uuid}`}>
-						<nav>
-							<h4>{idToWord(item)}</h4>
-							<div>
-								{data.allFile.edges
-									.filter(
-										post =>
-											oc(
-												post
-											).node.childMarkdownRemark.frontmatter.category() ===
-											item
-									)
-									.map(navItem => {
-										const {
-											relativeDirectory
-										} = navItem.node
-										return renderLink(relativeDirectory)
-									})}
-							</div>
-						</nav>
-					</div>
-				)
+		} else {
+			return []
+		}
+	}
+
+	const renderLinks = (edges: Array<MdxEdge>, categoryId: string) => {
+		return edges
+			.filter(
+				(post) => oc(post).node.frontmatter.category() === categoryId
+			)
+			.map((navItem: MdxEdge) => {
+				console.log({ navItem })
+				const { slug, id } = navItem.node
+				return renderLink(slug, id)
 			})
+	}
+
+	if (hasEdges) {
+		const postsCategories = getPostsCategories(data.allMdx.edges)
+		return postsCategories.map((categoryId: string) => {
+			const categoryTitle = idToWord(categoryId)
+
+			return (
+				<div key={`${categoryId}`}>
+					<nav>
+						<h4>
+							<FormattedMessage
+								id={categoryId}
+								defaultMessage={categoryTitle}
+							/>
+						</h4>
+						<div>{renderLinks(data.allMdx.edges, categoryId)}</div>
+					</nav>
+				</div>
+			)
+		})
 	} else {
 		return null
 	}
@@ -71,25 +88,19 @@ export const Navigation = () => (
 	<StaticQuery
 		query={graphql`
 			query NavigationQuery {
-				allFile(
-					filter: { sourceInstanceName: { eq: "pages" } }
-					sort: { fields: relativeDirectory, order: ASC }
-				) {
+				allMdx(sort: { fields: slug, order: ASC }) {
 					edges {
 						node {
-							relativeDirectory
-							childMarkdownRemark {
-								frontmatter {
-									category
-								}
+							slug
+							id
+							frontmatter {
+								category
 							}
 						}
 					}
 				}
 			}
 		`}
-		render={(navData: NavigationQueryQuery) => (
-			<nav>{renderNav(navData)}</nav>
-		)}
+		render={(navData: Query) => <nav>{renderNav(navData)}</nav>}
 	/>
 )

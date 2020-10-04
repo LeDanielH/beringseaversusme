@@ -5,14 +5,14 @@ const defaultDateForm = 'Do M. YYYY'
 const defaultDateTimeForm = 'D. M. YYYY H:mm'
 
 export const formatWithLocale = (
-	date: Date | number | string,
+	date: Date | number,
 	form = defaultDateForm
 ) => {
 	return format(date, form, { locale: cs })
 }
 
 export const formatDateTime = (
-	date: Date | number | string,
+	date: Date | number,
 	form = defaultDateTimeForm
 ) => {
 	return format(date, form, { locale: cs })
