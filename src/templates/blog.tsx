@@ -32,11 +32,6 @@ const Template = ({ pageContext, data }: TemplateProps) => {
 	const nextRelativeDirectory = oc(next).slug()
 	const body = oc(data).mdx.body('no template available')
 
-	console.log({
-		data,
-		body
-	})
-
 	return (
 		<Layout>
 			<div>

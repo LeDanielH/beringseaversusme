@@ -54,7 +54,6 @@ const renderNav = (data: Query): React.ReactNode => {
 				(post) => oc(post).node.frontmatter.category() === categoryId
 			)
 			.map((navItem: MdxEdge) => {
-				console.log({ navItem })
 				const { slug, id } = navItem.node
 				return renderLink(slug, id)
 			})

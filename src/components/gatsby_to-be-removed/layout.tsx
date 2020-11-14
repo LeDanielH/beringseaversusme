@@ -28,12 +28,10 @@ const SelectLocales = () => {
 		changeLocale(localeSelected)
 	}
 	return (
-		<select name="locales" id="locales" onChange={handleOnChange}>
+		<select name="locales" id="locales" onChange={handleOnChange} defaultValue={localeState}>
 			{LOCALES_LIST.map((locale: TLocales) => {
-				const selected = locale === localeState
-
 				return (
-					<option value={locale} key={locale} selected={selected}>
+					<option value={locale} key={locale}>
 						{locale}
 					</option>
 				)
@@ -45,7 +43,6 @@ const SelectLocales = () => {
 const Layout = (props: LayoutProps) => {
 	const { children } = props
 
-	console.log({ props })
 	return (
 		<StaticQuery
 			query={graphql`
