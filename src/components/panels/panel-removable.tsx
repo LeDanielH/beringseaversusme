@@ -3,7 +3,9 @@ import styled from 'styled-components'
 import { FlexChild, FlexParent } from '../layout-flex'
 import { Paragraph } from '../typography'
 import { IconCloseButton } from '../icons/icon-close'
-import { ISpacerProps, Spacer } from '../spacer'
+import { Spacer } from '@householdjs/elements'
+import { SpacerProps } from '@householdjs/types'
+
 import { theme } from '../../styles/theme'
 import { ChildrenProp } from '../../types/common'
 
@@ -22,7 +24,7 @@ const closePanel = (toggle: (hidden: boolean) => void) => () => toggle(true)
 export const PanelRemovable = ({
 	children,
 	...rest
-}: ChildrenProp & ISpacerProps) => {
+}: ChildrenProp & SpacerProps) => {
 	const [hidden, toggle] = useState(false)
 	return hidden ? null : (
 		<Spacer {...rest}>
@@ -31,7 +33,7 @@ export const PanelRemovable = ({
 					<Paragraph>{children}</Paragraph>
 				</FlexChild>
 				<FlexChild>
-					<Spacer left>
+					<Spacer sLeft>
 						<IconCloseButton onClick={closePanel(toggle)} />
 					</Spacer>
 				</FlexChild>

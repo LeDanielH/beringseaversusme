@@ -4,7 +4,8 @@ import { IconButton } from './icon-button'
 import { IIconCommonProps } from './Icon.types'
 import { HTMLAttributes } from 'react'
 import { theme } from '../../styles/theme'
-import { withTransition, withUnit } from '../../utilities/styles'
+import { withTransition, withUnit } from '@householdjs/utils'
+import React from 'react';
 
 const ICON_CLOSE_SIZE = 1 // rem
 const ICON_CLOSE_DASH_HEIGHT = 2

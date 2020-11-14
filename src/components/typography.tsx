@@ -1,12 +1,12 @@
 import styled from 'styled-components'
 import { theme } from '../styles/theme'
-import { withUnit } from '../utilities/styles'
-import * as CSS from 'csstype'
+import { withUnit } from '@householdjs/utils'
+import { CSSObject } from 'styled-components'
 import { SpacingSizes } from '../types/style'
 
 export interface TypographyProps {
-	textAlign?: CSS.TextAlignProperty
-	fontWeight?: CSS.FontWeightProperty
+	textAlign?: CSSObject['textAlign']
+	fontWeight?: CSSObject['fontWeight']
 	withBottomSpacing?: boolean
 	spacing?: SpacingSizes
 }

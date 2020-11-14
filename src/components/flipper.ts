@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-import { withUnit } from '../utilities/styles'
 import { theme } from '../styles/theme'
+import { withUnit } from '@householdjs/utils'
+
 interface IFlipperProps {
 	isFlipped: boolean
 }

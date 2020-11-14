@@ -1,6 +1,6 @@
 import React from 'react'
 import { LoaderBackdrop, LoaderCircle } from './loader.styles'
-import { Spacer } from '../spacer'
+import { Spacer } from '@householdjs/elements'
 
 export const Loader = () => (
 	<LoaderBackdrop>
