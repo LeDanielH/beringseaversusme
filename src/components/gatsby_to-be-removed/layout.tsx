@@ -6,6 +6,8 @@ import { theme } from '../../styles/theme'
 import { useIntl, changeLocale } from 'gatsby-plugin-intl'
 import Header from '../header'
 import { TLocales } from '../../types/common'
+import { SiteTitleQueryQuery } from '../../../gatsby-generated-types'
+import { oc } from 'ts-optchain'
 
 const Container = styled.div`
 	margin: 0 auto;
@@ -54,10 +56,10 @@ const Layout = (props: LayoutProps) => {
 					}
 				}
 			`}
-			render={(data: any) => (
+			render={(data: SiteTitleQueryQuery) => (
 				<ThemeProvider theme={theme}>
 					<>
-						<Header siteTitle={data.site.siteMetadata.title} />
+						<Header siteTitle={oc(data).site.siteMetadata.title('beringseaversus.me')} />
 						<Container>
 							<SelectLocales />
 							<Navigation />
