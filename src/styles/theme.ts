@@ -1,6 +1,5 @@
-import { round } from '../utilities/numbers-mod'
+import { round } from '@householdjs/utils'
 import { rem } from 'polished'
-import { SpacingSizes } from '../types/style'
 
 const COLORS = {
 	grayLightest: '#f7f7f7',
@@ -50,10 +49,10 @@ const BORDER = {
 	width: rem(1)
 }
 
-export const SPACING_MAP: Record<SpacingSizes, string> = {
-	big: rem(SIZES.baseSpacing * 2),
-	default: rem(SIZES.baseSpacing),
-	small: rem(SIZES.baseSpacing * 0.5)
+export const SPACING_MAP = {
+	big: '2rem',
+	default: '1rem',
+	small: '0.5rem'
 }
 
 const INPUTS = {

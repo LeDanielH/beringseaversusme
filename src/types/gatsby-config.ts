@@ -1,9 +1,12 @@
+import { Mdx } from '../../gatsby-generated-types'
+
 export interface PageContext {
-	previous: string
-	next: string
+	previous: null | Mdx
+	next: null | Mdx
 	date: string
 	title: string
-	relativeDirectory: string
+	titleIntl: string
+	id: string
 }
 
 export interface PageInput {

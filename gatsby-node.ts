@@ -6,8 +6,6 @@
 
 // You can delete this file if you're not using it
 
-import { oc } from 'ts-optchain'
-
 /**
  * Implement Gatsby's Node APIs in this file.
  *
@@ -21,64 +19,81 @@ require('dotenv').config({
 })
 
 const path = require('path')
-const format = require('date-fns/format')
 import { getDefaultPageData } from './src/utilities/dir-name-parser'
-import { GatsbyCreatePages } from './src/types/gatsby-config'
-import { Query } from './src/types/graphql-types'
+import { GatsbyCreatePages, PageInput } from './src/types/gatsby-config'
+import { Query, MdxEdge } from './gatsby-generated-types'
 
 // todo remove any from this file
 
 const getMarkdownPages = (fn: any) =>
 	fn(`{
-		allFile(filter: {sourceInstanceName: {eq: "pages"}}, sort: {fields: relativeDirectory, order: DESC}) {
+		allMdx(sort: {
+			fields: slug,
+			order: DESC,
+		}) {
 			edges {
 				node {
-					relativeDirectory
+					slug
+					id
 				}
 			}
 		}
     }`)
 
-const createPosts = (data: Query, createPage: any) => {
-	const hasEdges = oc(data).allFile.edges().length > 0
+const getPreviousPost = (
+	index: number,
+	edges: Array<MdxEdge>
+): MdxEdge['node'] | null => {
+	return index === edges.length - 1 ? null : edges[index + 1].node
+}
+
+const getNextPost = (
+	index: number,
+	edges: Array<MdxEdge>
+): MdxEdge['node'] | null => {
+	return index === 0 ? null : edges[index - 1].node
+}
+
+const createPosts = (data: Query, createPage: (params: PageInput) => void) => {
+	const { edges } = data.allMdx
 	return (
-		hasEdges &&
-		data.allFile.edges.map((post, index: number) => {
-			const { node } = post
-			const previous =
-				index === data.allFile.edges.length - 1
-					? null
-					: data.allFile.edges[index + 1].node
-			const next = index === 0 ? null : data.allFile.edges[index - 1].node
-			const date = format(
-				getDefaultPageData(node.relativeDirectory).date,
-				'MMMM Do YYYY'
-			)
-			const title = getDefaultPageData(node.relativeDirectory).title
-			createPage({
-				path: `/${getDefaultPageData(node.relativeDirectory).slug}`,
-				component: path.resolve(`src/templates/blog.tsx`),
-				context: {
-					previous,
-					next,
-					date,
-					title,
-					relativeDirectory: node.relativeDirectory
-				}
-			})
+		edges.length > 0 &&
+		edges.map((post, index: number) => {
+			if (post.node.slug) {
+				const previous = getPreviousPost(index, edges)
+				const next = getNextPost(index, edges)
+				const { date, title, slug, titleIntl } = getDefaultPageData(
+					post.node.slug
+				)
+
+				const component = path.resolve(`src/templates/blog.tsx`)
+				const { id } = post.node
+
+				createPage({
+					path: slug,
+					component,
+					context: {
+						previous,
+						next,
+						date,
+						title,
+						titleIntl,
+						id
+					}
+				})
+			} else {
+				throw new Error('missing post.node.slug')
+			}
 		})
 	)
 }
 
 const createPages: GatsbyCreatePages = async ({ actions, graphql }) => {
 	const { createPage } = actions
-	let result
-	try {
-		result = await getMarkdownPages(graphql)
-	} catch (err) {
+	const result = await getMarkdownPages(graphql).catch((err) => {
 		console.warn('Could not load data', err)
 		throw err
-	}
+	})
 	return createPosts(result.data, createPage)
 }
 

@@ -1,7 +1,6 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
-import { DefaultSeoQueryQuery } from '../../types/graphql-types'
 
 interface Meta {
 	name: string
@@ -26,7 +25,7 @@ function SEO({
 	return (
 		<StaticQuery
 			query={detailsQuery}
-			render={(data: DefaultSeoQueryQuery) => {
+			render={(data: any) => {
 				const metaDescription =
 					description || data.site.siteMetadata.description
 				return (
