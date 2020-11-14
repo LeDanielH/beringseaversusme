@@ -1,6 +1,8 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { StaticQuery, graphql } from 'gatsby'
+import { DefaultSeoQueryQuery } from '../../../gatsby-generated-types'
+import { oc } from 'ts-optchain'
 
 interface Meta {
 	name: string
@@ -25,16 +27,16 @@ function SEO({
 	return (
 		<StaticQuery
 			query={detailsQuery}
-			render={(data: any) => {
+			render={(data: DefaultSeoQueryQuery) => {
 				const metaDescription =
-					description || data.site.siteMetadata.description
+					description || oc(data).site.siteMetadata.description('description is missing')
 				return (
 					<Helmet
 						htmlAttributes={{
 							lang
 						}}
 						title={title}
-						titleTemplate={`%s | ${data.site.siteMetadata.title}`}
+						titleTemplate={`%s | ${oc(data).site.siteMetadata.title('titleTemplate title is missing')}`}
 						meta={[
 							{
 								name: `description`,
@@ -58,7 +60,7 @@ function SEO({
 							},
 							{
 								name: `twitter:creator`,
-								content: data.site.siteMetadata.author
+								content: oc(data).site.siteMetadata.author('author name is missing')
 							},
 							{
 								name: `twitter:title`,
