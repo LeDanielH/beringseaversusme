@@ -1,18 +1,21 @@
 import styled from 'styled-components'
 import { theme } from '../styles/theme'
-import * as CSS from 'csstype'
 import { SpacingSizes } from '../types/style'
+import {Property} from "csstype";
+import AlignItems = Property.AlignItems;
+import FlexDirection = Property.FlexDirection;
+import JustifyContent = Property.JustifyContent;
 
 // simple layout flex components
 // meant to be stacked on top of each other FlexParent => FlexChild => content/FlexParent => FlexChild => content/FlexParent...
 // => IE reasons and layout consistency reasons
 
 export interface ILayoutFlexParentProps {
-	alignItems?: CSS.AlignItemsProperty
+	alignItems?: AlignItems,
 	// tslint:disable-next-line:max-union-size
-	justifyContent?: CSS.JustifyContentProperty
+	justifyContent?: JustifyContent,
 	flexWrap?: boolean
-	flexDirection?: CSS.FlexDirectionProperty
+	flexDirection?: FlexDirection
 	fullWidth?: boolean
 	fillHeight?: boolean
 	isInline?: boolean

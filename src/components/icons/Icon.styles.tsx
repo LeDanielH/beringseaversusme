@@ -2,15 +2,18 @@ import styled, { css } from 'styled-components'
 import { IIconCommonProps } from './Icon.types'
 import { position, size as sizePolished } from 'polished'
 import { HTMLAttributes } from 'react'
-import * as CSS from 'csstype'
 import {
 	getRotationBasedOnDirection,
 	sizeRounderWithUnit,
-	withTransition,
 	withUnit
 } from '../../utilities/styles'
 import { FlexParent } from '../layout-flex'
 import { theme } from '../../styles/theme'
+import React from 'react';
+import {withTransition} from "@householdjs/utils";
+import {Property} from "csstype";
+import BackgroundColor = Property.BackgroundColor;
+import BackgroundImage = Property.BackgroundImage;
 
 // SvgIconWrapper makes sure the icon is wrapped with "i" element and that it's always a square (easy and consistent DOM manipulation)
 // export svg icons without empty space around it
@@ -43,7 +46,7 @@ export const SvgIconWrapper = styled('i')<
 `
 
 export interface IIconCircleProps {
-	background?: CSS.BackgroundColorProperty | CSS.BackgroundImageProperty // linear gradient is an image
+	background?: BackgroundColor | BackgroundImage // linear gradient is an image
 	size?: number
 	horizontalAdjustment?: number
 }

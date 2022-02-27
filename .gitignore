@@ -67,3 +67,9 @@ yarn-error.log
 .pnp.js
 # Yarn Integrity file
 .yarn-integrity
+/.idea/
+/src/types/gatsby-config.js
+/src/types/graphql-types.jsx
+/gatsby-generated-types.js
+/gatsby-node.js
+/src/utilities/dir-name-parser.js

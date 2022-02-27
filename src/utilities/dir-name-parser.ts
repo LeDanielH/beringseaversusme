@@ -1,23 +1,33 @@
+import { parseISO, format } from 'date-fns'
 const PAGE_DATE_PATTERN = /[0-9]{4}-[0-9]{2}-[0-9]{2}/
 const SLUG_PATTERN = /_[a-z0-9-]*/
 
 export interface IgetDefaultPageData {
 	slug: string
 	title: string
+	titleIntl: string
 	date: string
 }
 
-export function getDefaultPageData(dir: string): IgetDefaultPageData {
-	const slug = extractSlugFromString(dir)
+const extractTitleFromSlug = (slug: string) => {
+	const slugWithoutDashes = idToWord(slug)
+	return slugWithoutDashes.replace(/\//g, '')
+}
+
+export function getDefaultPageData(directoryName: string): IgetDefaultPageData {
+	const slug = extractSlugFromDirectoryName(directoryName)
 	return {
 		slug,
-		title: idToWord(slug),
-		date: extractDashedDayDateFromString(dir)
+		title: extractTitleFromSlug(slug),
+		titleIntl: slug.replace(/\//g, ''),
+		date: extractPrettyDateFromDirectoryName(directoryName)
 	}
 }
 
-export function extractDashedDayDateFromString(pageName: string): string {
-	const extractedDate = pageName.substring(0, 10)
+export function extractPrettyDateFromDirectoryName(
+	directoryName: string
+): string {
+	const extractedDate = directoryName.substring(0, 10)
 	const dateRegex = new RegExp(PAGE_DATE_PATTERN)
 	const isDateStringValid = dateRegex.test(extractedDate)
 	if (!isDateStringValid)
@@ -25,19 +35,21 @@ export function extractDashedDayDateFromString(pageName: string): string {
 			`string representing date is not valid,\n
 		yours is ${extractedDate}`
 		)
-	return extractedDate
+	const dateISO = parseISO(extractedDate)
+	return format(dateISO, 'MMMM dd yyyy')
 }
 
-export function extractSlugFromString(pageName: string): string {
-	const slug = pageName.substring(10, pageName.length)
+export function extractSlugFromDirectoryName(directoryName: string): string {
+	const slugRaw = directoryName.substring(10, directoryName.length)
 	const slugRegex = new RegExp(SLUG_PATTERN)
-	const isValidSlug = slugRegex.test(slug)
+	const isValidSlug = slugRegex.test(slugRaw)
 	if (!isValidSlug)
 		throw new Error(
-			`Slug pattern should look like this: _slug or _slug-slug-323. 
-			No uppercase letters or special characters. Yours is ${slug}`
+			`Slug pattern should look like this: _slug or _slug-slug-323.
+			No uppercase letters or special characters. Yours is ${slugRaw}`
 		)
-	return slug.substring(1)
+	const slugWithoutUnderScore = slugRaw.replace(/_/g, '')
+	return `/${slugWithoutUnderScore}`
 }
 
 export function idToWord(id: string): string {

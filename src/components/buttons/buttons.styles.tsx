@@ -8,7 +8,7 @@ import {
 } from './buttons.types'
 import { FlexChild, FlexParent } from '../layout-flex'
 import { theme } from '../../styles/theme'
-import { withTransition, withUnit } from '../../utilities/styles'
+import { withUnit, withTransition } from '@householdjs/utils'
 import { ChildrenProp } from '../../types/common'
 
 const baseButtonLayoutStyles: CSSObject = {

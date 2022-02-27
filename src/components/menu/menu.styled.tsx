@@ -2,10 +2,11 @@ import React from 'react'
 import styled from 'styled-components'
 import { padding, position, rem } from 'polished'
 import { IMenuPanelHeaderProps } from './MenuPanel/menu-panel.types'
-import { mediaMax, withTransition, withUnit } from '../../utilities/styles'
+import { mediaMax, withUnit } from '../../utilities/styles'
 import { theme } from '../../styles/theme'
 import { FlexChild, FlexParent } from '../layout-flex'
 import { Paragraph, Subtitle } from '../typography'
+import {withTransition} from "@householdjs/utils";
 
 const MENU_ITEM_DASH_HEIGHT = 18
 const MENU_ITEM_DASH_WIDTH = 1

@@ -31,14 +31,17 @@ export class Dropdown extends React.Component<DropdownProps, DropdownState> {
 	// for edge cases where change inside dropdown won't trigger height update
 	componentDidForceUpdate = () => {
 		const mutationObserver = new MutationObserver(this.updateContentHeight)
-		mutationObserver.observe(this.content.current, {
-			attributes: false,
-			characterData: false,
-			childList: true,
-			subtree: true,
-			attributeOldValue: false,
-			characterDataOldValue: false
-		})
+		if(this.content.current) {
+			mutationObserver.observe(this.content.current, {
+				attributes: false,
+				characterData: false,
+				childList: true,
+				subtree: true,
+				attributeOldValue: false,
+				characterDataOldValue: false
+			})
+		}
+
 	}
 
 	componentDidMount(): void {

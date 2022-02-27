@@ -5,6 +5,7 @@ import { CssDirectionType } from '../../types/style'
 import { IIconCommonProps } from './Icon.types'
 import { round } from '../../utilities/numbers-mod'
 import { MAX_PRECISION } from '../../constants/common'
+import {getNumber} from "@householdjs/utils";
 
 export interface ISvgIconProps
 	extends Pick<IIconCommonProps, 'size' | 'sizeRatio'> {
@@ -35,7 +36,7 @@ export const SvgIcon = ({
 	...rest
 }: ISvgIconProps & HTMLAttributes<HTMLElement>) => {
 	const wrapperSize =
-		size || round(Math.max(width, height) * sizeRatio, MAX_PRECISION)
+		size || round(Math.max(getNumber(width), getNumber(height)) * sizeRatio, MAX_PRECISION)
 	return (
 		<SvgIconWrapper
 			size={wrapperSize}

@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { withUnit } from '../../utilities/styles'
+import { withUnit } from '@householdjs/utils'
 import { theme } from '../../styles/theme'
 
 export interface DropdownStyledProps {

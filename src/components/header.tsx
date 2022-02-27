@@ -1,8 +1,8 @@
-import { Link } from 'gatsby'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { CSSObject } from 'styled-components'
+import { Link } from 'gatsby-plugin-react-intl'
 
 interface HeaderProps {
 	siteTitle: string

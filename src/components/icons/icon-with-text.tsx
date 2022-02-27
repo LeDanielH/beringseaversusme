@@ -11,7 +11,7 @@ type IconWithTextProps = Pick<IIconCommonProps, 'sizeRatio' | 'color'>
 const IconWithTextStyled = styled(({ ...rest }) => (
 	<FlexParent {...rest} justifyContent="center" alignItems="center" />
 ))<IconWithTextProps>(
-	({ sizeRatio, color = theme.colors.text }: IconWithTextProps) => ({
+	({ sizeRatio = 1, color = theme.colors.text }: IconWithTextProps) => ({
 		borderColor: color,
 		borderStyle: 'solid',
 		borderWidth: sizeRounderWithUnit(2 * sizeRatio, 'px'),
@@ -25,7 +25,7 @@ const IconWithTextStyled = styled(({ ...rest }) => (
 )
 
 const IconWithTextText = styled('span')<IconWithTextProps>`
-	font-size: ${({ sizeRatio }) =>
+	font-size: ${({ sizeRatio = 1 }) =>
 		sizeRounderWithUnit(0.4 * sizeRatio, 'rem')};
 	color: ${({ color }) => color};
 	color: ${theme.colors.black};

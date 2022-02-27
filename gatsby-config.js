@@ -1,3 +1,9 @@
+/**
+ * Configure your Gatsby site with this file.
+ *
+ * See: https://www.gatsbyjs.org/docs/gatsby-config/
+ */
+
 require('dotenv').config({
 	path: `.env.${process.env.NODE_ENV}`
 })
@@ -9,7 +15,7 @@ module.exports = {
 		description: 'Bering Sea fishing',
 		siteUrl: process.env.GATSBY_PAGE_URL
 	},
-	pathPrefix: '/beringseaversusme',
+	/* Your site config here */
 	plugins: [
 		`gatsby-plugin-react-helmet`,
 		`gatsby-plugin-styled-components`,
@@ -35,9 +41,12 @@ module.exports = {
 			}
 		},
 		{
-			resolve: 'gatsby-transformer-remark',
+			resolve: 'gatsby-plugin-mdx',
 			options: {
-				plugins: [`gatsby-remark-copy-linked-files`] // just in case those previously mentioned remark plugins sound cool :)
+				gatsbyRemarkPlugins: [
+					`gatsby-remark-copy-linked-files`,
+					'gatsby-remark-component'
+				] // just in case those previously mentioned remark plugins sound cool :)
 			}
 		},
 		`gatsby-transformer-sharp`,
@@ -58,39 +67,28 @@ module.exports = {
 		// To learn more, visit: https://gatsby.app/offline
 		'gatsby-plugin-offline',
 		{
-			resolve: `gatsby-plugin-typescript`,
-			options: {
-				isTSX: false, // defaults to false
-				allExtensions: false // defaults to false
-			}
-		},
-		{
-			resolve: `gatsby-plugin-nprogress`,
-			options: {
-				// Setting a color is optional.
-				color: `tomato`,
-				// Disable the loading spinner.
-				showSpinner: false
-			}
-		},
-		{
-			resolve: 'gatsby-transformer-remark',
-			options: {
-				plugins: ['gatsby-remark-component']
-			}
-		},
-		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
 				trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID
 			}
 		},
 		{
-			resolve: 'gatsby-source-graphql',
+			resolve: `gatsby-plugin-graphql-codegen`,
 			options: {
-				typeName: 'RMAPI',
-				fieldName: 'rickAndMorty',
-				url: process.env.GATSBY_API_URL
+				fileName: `./gatsby-generated-types.ts`
+			}
+		},
+		{
+			resolve: `gatsby-plugin-react-intl`,
+			options: {
+				// language JSON resource path
+				path: `${__dirname}/src/intl`,
+				// supported language
+				languages: [`en`, `cs`],
+				// language file path
+				defaultLanguage: `en`,
+				// option to redirect to `/en` when connecting `/`
+				redirect: true
 			}
 		}
 	],
