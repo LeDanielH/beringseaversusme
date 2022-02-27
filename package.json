@@ -11,6 +11,7 @@
 		"start": "npm run gatsby-config && npm run develop",
 		"serve": "gatsby serve",
 		"clean": "gatsby clean",
+		"check:type": "tsc --noEmit",
 		"test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1",
 		"gatsby-config": "tsc gatsby-node.ts --skipLibCheck true --noImplicitUseStrict true --target es5 --jsx preserve"
 	},
@@ -52,8 +53,10 @@
 		"@types/rehype-react": "^4.0.0",
 		"@types/styled-components": "^5.1.23",
 		"babel-plugin-styled-components": "^2.0.6",
+		"csstype": "^3.0.10",
 		"dotenv": "^16.0.0",
-		"prettier": "2.5.1"
+		"prettier": "2.5.1",
+		"react-apollo": "2.5.8"
 	},
 	"repository": {
 		"type": "git",

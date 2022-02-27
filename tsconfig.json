@@ -26,6 +26,6 @@
 		},
 		"plugins": [{ "transform": "ts-optchain/transform" }]
 	},
-	"include": ["client/**/*"],
+	"include": ["src/**/*", "gatsby-node.ts"],
 	"exclude": ["node_modules"]
 }

@@ -17,17 +17,17 @@ export const Footer = ({ buttonBack, buttonContinue }: FooterProps) => {
 						onClick={buttonBack.onClick}
 						type={oc(buttonBack).type('button')}
 					>
-						{oc(buttonBack).label(null)}
+						{oc(buttonBack).label('')}
 					</ButtonBack>
 				</FlexChild>
 			)}
 			{buttonContinue && (
 				<FlexChild>
 					<ButtonContinue
-						onClick={buttonBack.onClick}
+						onClick={buttonContinue.onClick}
 						type={oc(buttonContinue).type('button')}
 					>
-						{oc(buttonContinue).label(null)}
+						{oc(buttonContinue).label('')}
 					</ButtonContinue>
 				</FlexChild>
 			)}

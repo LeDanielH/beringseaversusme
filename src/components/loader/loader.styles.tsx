@@ -3,6 +3,7 @@ import { position, rem, rgba, size } from 'polished'
 import { FlexParent } from '../layout-flex'
 import { theme } from '../../styles/theme'
 import { ChildrenProp } from '../../types/common'
+import React from 'react';
 
 const spin = keyframes`
   0% {
