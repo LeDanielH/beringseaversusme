@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 import { CSSObject } from 'styled-components'
-import { Link } from 'gatsby-plugin-intl'
+import { Link } from 'gatsby-plugin-react-intl'
 
 interface HeaderProps {
 	siteTitle: string

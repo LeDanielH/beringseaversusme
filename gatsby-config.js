@@ -40,11 +40,10 @@ module.exports = {
 				path: `${__dirname}/src/data`
 			}
 		},
-		`gatsby-plugin-mdx`,
 		{
-			resolve: 'gatsby-transformer-remark',
+			resolve: 'gatsby-plugin-mdx',
 			options: {
-				plugins: [
+				gatsbyRemarkPlugins: [
 					`gatsby-remark-copy-linked-files`,
 					'gatsby-remark-component'
 				] // just in case those previously mentioned remark plugins sound cool :)
@@ -68,14 +67,6 @@ module.exports = {
 		// To learn more, visit: https://gatsby.app/offline
 		'gatsby-plugin-offline',
 		{
-			resolve: `gatsby-plugin-typescript`,
-			options: {
-				isTSX: false, // defaults to false
-				allExtensions: false // defaults to false
-			}
-		},
-
-		{
 			resolve: `gatsby-plugin-google-analytics`,
 			options: {
 				trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID
@@ -88,7 +79,7 @@ module.exports = {
 			}
 		},
 		{
-			resolve: `gatsby-plugin-intl`,
+			resolve: `gatsby-plugin-react-intl`,
 			options: {
 				// language JSON resource path
 				path: `${__dirname}/src/intl`,

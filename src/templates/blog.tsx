@@ -1,6 +1,5 @@
 import React from 'react'
 import Layout from '../components/gatsby_to-be-removed/layout'
-import { Link } from 'gatsby-plugin-intl'
 import { graphql } from 'gatsby'
 import { getDefaultPageData } from '../utilities/dir-name-parser'
 import { oc } from 'ts-optchain'
@@ -8,7 +7,7 @@ import { PageContext } from '../types/gatsby-config'
 import { Query } from '../../gatsby-generated-types'
 import { MDXProvider } from '@mdx-js/react'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage, Link } from 'gatsby-plugin-react-intl'
 
 type TemplateProps = {
 	data: Query

@@ -1,7 +1,7 @@
 import React from 'react'
 import { graphql, StaticQuery } from 'gatsby'
 import { oc } from 'ts-optchain'
-import { FormattedMessage } from 'gatsby-plugin-intl'
+import { FormattedMessage } from 'gatsby-plugin-react-intl'
 
 import { getDefaultPageData, idToWord } from '../../utilities/dir-name-parser'
 import { NavLinkStyled } from './nav-link'

@@ -1,5 +1,5 @@
 import { GatsbyLinkProps } from 'gatsby'
-import { Link } from 'gatsby-plugin-intl'
+import { Link } from 'gatsby-plugin-react-intl'
 import styled from 'styled-components'
 import React from 'react'
 import { theme } from '../../styles/theme'
