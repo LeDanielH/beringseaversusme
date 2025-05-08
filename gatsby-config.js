@@ -67,15 +67,11 @@ module.exports = {
 		// To learn more, visit: https://gatsby.app/offline
 		'gatsby-plugin-offline',
 		{
-			resolve: `gatsby-plugin-google-analytics`,
-			options: {
-				trackingId: process.env.GATSBY_GOOGLE_ANALYTICS_ID
-			}
-		},
-		{
 			resolve: `gatsby-plugin-graphql-codegen`,
 			options: {
-				fileName: `./gatsby-generated-types.ts`
+				fileName: `./gatsby-generated-types.ts`,
+				documentPaths: ['./src/**/*.{ts,tsx}', './node_modules/gatsby-*/**/*.js'],
+				codegen: false // enable when non available
 			}
 		},
 		{

@@ -69,7 +69,6 @@ yarn-error.log
 .yarn-integrity
 /.idea/
 /src/types/gatsby-config.js
-/src/types/graphql-types.jsx
 /gatsby-generated-types.js
 /gatsby-node.js
 /src/utilities/dir-name-parser.js
