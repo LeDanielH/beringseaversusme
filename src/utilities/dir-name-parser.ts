@@ -1,6 +1,4 @@
 import { parseISO, format } from 'date-fns'
-const PAGE_DATE_PATTERN = /[0-9]{4}-[0-9]{2}-[0-9]{2}/
-const SLUG_PATTERN = /_[a-z0-9-]*/
 
 export interface IgetDefaultPageData {
 	slug: string
@@ -27,6 +25,7 @@ export function getDefaultPageData(directoryName: string): IgetDefaultPageData {
 export function extractPrettyDateFromDirectoryName(
 	directoryName: string
 ): string {
+	const PAGE_DATE_PATTERN = /[0-9]{4}-[0-9]{2}-[0-9]{2}/
 	const extractedDate = directoryName.substring(0, 10)
 	const dateRegex = new RegExp(PAGE_DATE_PATTERN)
 	const isDateStringValid = dateRegex.test(extractedDate)
@@ -41,6 +40,7 @@ export function extractPrettyDateFromDirectoryName(
 
 export function extractSlugFromDirectoryName(directoryName: string): string {
 	const slugRaw = directoryName.substring(10, directoryName.length)
+	const SLUG_PATTERN = /_[a-z0-9-]*/
 	const slugRegex = new RegExp(SLUG_PATTERN)
 	const isValidSlug = slugRegex.test(slugRaw)
 	if (!isValidSlug)

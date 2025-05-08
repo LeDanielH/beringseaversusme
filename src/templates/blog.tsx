@@ -30,6 +30,12 @@ const Template = ({ pageContext, data }: TemplateProps) => {
 	const previousRelativeDirectory = oc(previous).slug()
 	const nextRelativeDirectory = oc(next).slug()
 	const body = oc(data).mdx.body('no template available')
+	const maybePrevLink = previousRelativeDirectory ?
+		renderFooterLink(previousRelativeDirectory, 'prev') : null;
+
+	const maybeNextLink = nextRelativeDirectory ?
+		renderFooterLink(nextRelativeDirectory, 'next') : null;
+
 
 	return (
 		<Layout>
@@ -50,10 +56,8 @@ const Template = ({ pageContext, data }: TemplateProps) => {
 				</article>
 				<footer>
 					<ul>
-						{previousRelativeDirectory &&
-							renderFooterLink(previousRelativeDirectory, 'prev')}
-						{nextRelativeDirectory &&
-							renderFooterLink(nextRelativeDirectory, 'next')}
+						{maybePrevLink}
+						{maybeNextLink}
 					</ul>
 				</footer>
 			</div>

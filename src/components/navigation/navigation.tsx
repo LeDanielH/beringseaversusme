@@ -28,37 +28,35 @@ const renderLink = (
 	}
 }
 
+const renderLinks = (edges: Array<MdxEdge>, categoryId: string) => {
+	return edges.reduce((acc, post) => {
+		if (oc(post).node.frontmatter.category() === categoryId) {
+			const { slug, id } = post.node
+			acc.push(renderLink(slug, id) as JSX.Element)
+		}
+		return acc
+	}, [] as JSX.Element[])
+}
+
+const getPostsCategories = (edges: Array<MdxEdge>): string[] => {
+	if (edges.length > 0) {
+		return edges.reduce((accumulator: string[], item: MdxEdge) => {
+			const category = oc(item).node.frontmatter.category()
+			if (category) {
+				const missingCategory = accumulator.indexOf(category) === -1
+				if (missingCategory) {
+					return [...accumulator, category]
+				}
+			}
+			return accumulator
+		}, [])
+	} else {
+		return []
+	}
+}
+
 const renderNav = (data: Query): React.ReactNode => {
 	const hasEdges = data.allMdx.edges.length > 0
-
-	const getPostsCategories = (edges: Array<MdxEdge>): string[] => {
-		if (edges.length > 0) {
-			return edges.reduce((accumulator: string[], item: MdxEdge) => {
-				const category = oc(item).node.frontmatter.category()
-				if (category) {
-					const missingCategory = accumulator.indexOf(category) === -1
-					if (missingCategory) {
-						return [...accumulator, category]
-					}
-				}
-				return accumulator
-			}, [])
-		} else {
-			return []
-		}
-	}
-
-	const renderLinks = (edges: Array<MdxEdge>, categoryId: string) => {
-		return edges
-			.filter(
-				(post) => oc(post).node.frontmatter.category() === categoryId
-			)
-			.map((navItem: MdxEdge) => {
-				const { slug, id } = navItem.node
-				return renderLink(slug, id)
-			})
-	}
-
 	if (hasEdges) {
 		const postsCategories = getPostsCategories(data.allMdx.edges)
 		return postsCategories.map((categoryId: string) => {
@@ -83,8 +81,9 @@ const renderNav = (data: Query): React.ReactNode => {
 	}
 }
 
-export const Navigation = () => (
-	<StaticQuery
+const render = (navData: Query) => <nav>{renderNav(navData)}</nav>
+export const Navigation = () => {
+	return <StaticQuery
 		query={graphql`
 			query NavigationQuery {
 				allMdx(sort: { fields: slug, order: ASC }) {
@@ -100,6 +99,6 @@ export const Navigation = () => (
 				}
 			}
 		`}
-		render={(navData: Query) => <nav>{renderNav(navData)}</nav>}
+		render={render}
 	/>
-)
+}
